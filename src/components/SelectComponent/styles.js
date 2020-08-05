@@ -22,7 +22,7 @@ export const ContainerCall = styled.div`
   background: #e4e4e4;
 
   p {
-    font-size: 2em;
+    font-size: 1.2em;
     color: #929292;
   }
 `;

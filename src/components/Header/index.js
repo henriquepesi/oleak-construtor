@@ -8,7 +8,7 @@ import { HeaderComponente, InputGroup, ImageContainer } from "./styles";
 const Header = () => {
   return (
     <HeaderComponente>
-      <UploadLane />
+      <UploadLane userText="Logo distribuidor" />
       <InputGroup>
         <input placeholder="Nome" />
         <input placeholder="Tel" />
@@ -17,7 +17,7 @@ const Header = () => {
       <ImageContainer>
         <img src={Logo} width="200" alt="Oleak" />
       </ImageContainer>
-      <UploadLane />
+      <UploadLane userText="Logo cliente" />
     </HeaderComponente>
   );
 };

@@ -2,10 +2,10 @@ import React from "react";
 
 import { UploadLaneComponent } from "./styles";
 
-const UploadLane = () => {
+const UploadLane = ({ userText }) => {
   return (
     <UploadLaneComponent>
-      <h4>Logo distribudor</h4>
+      <h4>{userText}</h4>
       <span>upload</span>
     </UploadLaneComponent>
   );

@@ -7,9 +7,13 @@ import { Container, SelectContainerComponent, ToPrint } from "./styles";
 const SelectContainer = () => {
   const [firstSelect, setFirstSelect] = useState("Selecione");
   const [product, setProduct] = useState("Selecione");
+  const [procedure, setProcedure] = useState("Selecione");
   const [build, setBuild] = useState("Selecione");
   const [selectNumberOneValue, setSelectNumberOneValue] = useState("0");
   const [selectNumberTwoValue, setSelectNumberTwoValue] = useState("0");
+
+  const [frequenceOne, setFrequenceOne] = useState("0");
+  const [frequenceTwo, setFrequenceTwo] = useState("0");
 
   const componentRef = useRef();
 
@@ -25,12 +29,24 @@ const SelectContainer = () => {
     setBuild(item.target.value);
   }
 
+  function selectedProcedure(item) {
+    setProcedure(item.target.value);
+  }
+
   function handleDiluicaoNumberOne(item) {
     setSelectNumberOneValue(item.target.value);
   }
 
   function handleDiluicaoNumberTwo(item) {
     setSelectNumberTwoValue(item.target.value);
+  }
+
+  function handleFrequenceOne(item) {
+    setFrequenceOne(item.target.value);
+  }
+
+  function handleFrequenceTwo(item) {
+    setFrequenceTwo(item.target.value);
   }
 
   return (
@@ -71,21 +87,21 @@ const SelectContainer = () => {
 
         <SelectComponent
           hasInput={true}
-          selectedOption={build}
+          selectedOption={procedure}
           selectOptions={["Procedimento", "Procedimento 1", "Procedimento 2"]}
-          fcSelect={(item) => selectedBuild(item)}
+          fcSelect={(item) => selectedProcedure(item)}
         />
 
         <SelectComponent
           selectSize={true}
-          selectNumberOne={selectNumberOneValue}
-          selectNumberTwo={selectNumberTwoValue}
+          selectNumberOne={frequenceOne}
+          selectNumberTwo={frequenceTwo}
           selectOptions={["Frequência"]}
           selectSizeOne={(item) => {
-            handleDiluicaoNumberOne(item);
+            handleFrequenceOne(item);
           }}
           selectSizeTwo={(item) => {
-            handleDiluicaoNumberTwo(item);
+            handleFrequenceTwo(item);
           }}
         />
       </SelectContainerComponent>
@@ -111,11 +127,13 @@ const SelectContainer = () => {
         </div>
         <div>
           <h3>Procedimento</h3>
-          <span>{build}</span>
+          <span>{procedure}</span>
         </div>
         <div>
           <h3>Frequência</h3>
-          <span>{build}</span>
+          <span>
+            {frequenceOne} x {frequenceTwo}
+          </span>
         </div>
       </ToPrint>
 

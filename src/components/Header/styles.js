@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderComponente = styled.header`
   padding: 1em 2em;
@@ -18,6 +18,9 @@ export const InputGroup = styled.header`
     border: none;
     padding: 0.5em;
     border-radius: 4px;
+    font-size: 0.8em;
+    color: #929292;
+    font-weight: 600;
   }
 
   input + input {
