@@ -31,5 +31,9 @@ export const InputGroup = styled.header`
 export const ImageContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+`;
+
+export const HeaderContainerEnd = styled.div`
+  display: flex;
 `;
