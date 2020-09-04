@@ -5,17 +5,16 @@ const thumbsContainer = {
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
-  marginTop: 16,
 };
 
 const thumb = {
   display: "inline-flex",
   borderRadius: 2,
-  border: "1px solid #eaeaea",
+  // border: "1px solid #eaeaea",
   marginBottom: 8,
   marginRight: 8,
-  width: 100,
-  height: 100,
+  height: "auto",
+  maxWidth: "100%",
   padding: 4,
   boxSizing: "border-box",
 };
@@ -28,8 +27,8 @@ const thumbInner = {
 
 const img = {
   display: "block",
-  width: "auto",
-  height: "100%",
+  maxWidth: "auto",
+  height: 150,
 };
 
 export default function DragDrop(props) {
@@ -70,9 +69,23 @@ export default function DragDrop(props) {
       <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
         {!thumbs.length ? (
-          <p>Drag 'n' drop some files here, or click to select files</p>
+          <div
+            style={{
+              background: "#f2f4f6",
+              width: 150,
+              height: 150,
+              borderRadius: 5,
+              marginRight: 20,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 10,
+            }}
+          >
+            Drag 'n' drop some files here, or click to select files
+          </div>
         ) : (
-          <aside style={thumbsContainer}>{thumbs}</aside>
+          <div style={thumbsContainer}>{thumbs}</div>
         )}
       </div>
       <aside style={thumbsContainer}></aside>
