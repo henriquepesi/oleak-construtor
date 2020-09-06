@@ -31,7 +31,7 @@ const img = {
   height: 150,
 };
 
-export default function DragDrop({ message, width, height }) {
+export default function DragDrop({ message, width, height, imgSelected }) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",

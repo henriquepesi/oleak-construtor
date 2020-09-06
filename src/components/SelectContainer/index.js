@@ -15,6 +15,7 @@ const SelectContainer = () => {
   const [selectNumberOneValue, setSelectNumberOneValue] = useState("0");
   const [selectNumberTwoValue, setSelectNumberTwoValue] = useState("0");
   const [listOfImg, setListOfImg] = useState(false);
+  const [imgSelect, setImgSelect] = useState();
 
   const [frequenceOne, setFrequenceOne] = useState("0");
   const [frequenceTwo, setFrequenceTwo] = useState("0");
@@ -53,8 +54,9 @@ const SelectContainer = () => {
   // }
 
   function handleImgSelecter(item) {
-    console.log(item);
+    setImgSelect(item);
     setListOfImg(false);
+    console.log(item);
   }
 
   function showListImg(s) {
@@ -74,11 +76,20 @@ const SelectContainer = () => {
             hasInput={true}
             selectImage={data.map((id) => id["Imagens Produtos"])}
             selectedOption={
-              <DragDrop
-                width="100%"
-                height="100px"
-                message="selecionar imagem"
-              />
+              imgSelect === undefined ? (
+                <DragDrop
+                  width="100%"
+                  height="100px"
+                  message="selecionar imagem"
+                  // imgSelected={imgSelect}
+                />
+              ) : (
+                <img
+                  style={{ width: 100, height: 100 }}
+                  src={imgSelect}
+                  alt={imgSelect}
+                />
+              )
             }
             fcSelect={(item) => handleItem(item)}
           />
