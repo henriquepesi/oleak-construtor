@@ -31,7 +31,7 @@ const img = {
   height: 150,
 };
 
-export default function DragDrop({ message }) {
+export default function DragDrop({ message, width, height }) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -69,9 +69,11 @@ export default function DragDrop({ message }) {
         {!thumbs.length ? (
           <div
             style={{
-              background: "#f2f4f6",
-              width: 150,
-              height: 150,
+              // background: "#f2f4f6",
+              background: "#e4e4e4",
+              width: width,
+              height: height,
+              cursor: "grab",
               borderRadius: 5,
               marginRight: 20,
               display: "flex",

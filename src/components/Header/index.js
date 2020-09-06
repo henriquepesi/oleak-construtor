@@ -17,8 +17,8 @@ const Header = () => {
         <img src={Logo} width="200" alt="Oleak" />
       </ImageContainer>
       <HeaderContainerEnd>
-        <DragDrop message="Seu logo" />
-        <DragDrop message="Meu logo" />
+        <DragDrop width="150px" height="150px" message="Logo do cliente" />
+        <DragDrop width="150px" height="150px" message="Seu logo" />
         <InputGroup>
           <input placeholder="Telefone" />
           <input placeholder="Email" />

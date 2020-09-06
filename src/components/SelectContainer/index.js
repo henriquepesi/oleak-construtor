@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import SelectComponent from "../SelectComponent";
-import ReactToPrint from "react-to-print";
 
 import data from "../../data/data";
+
+import DragDrop from "../DragDrop";
 
 import { Container, SelectContainerComponent, ToPrint } from "./styles";
 
@@ -13,22 +14,11 @@ const SelectContainer = () => {
   const [build, setBuild] = useState("Selecione");
   const [selectNumberOneValue, setSelectNumberOneValue] = useState("0");
   const [selectNumberTwoValue, setSelectNumberTwoValue] = useState("0");
+  const [listOfImg, setListOfImg] = useState(false);
 
   const [frequenceOne, setFrequenceOne] = useState("0");
   const [frequenceTwo, setFrequenceTwo] = useState("0");
   const [datas, setDatas] = useState([]);
-
-  const componentRef = useRef();
-  // useEffect(() => {
-  //   const loadData = () => {
-  //     setDatas(data);
-  //   };
-  //   loadData();
-  //   console.log(data[0]["Nome Produtos"]);
-  //   console.log(datas[0]["Nome Produtos"]);
-  // }, [datas]);
-
-  console.log(data.map((id) => console.log(id["Nome Produtos"])));
 
   function handleItem(item) {
     setFirstSelect(item.target.value);
@@ -54,12 +44,22 @@ const SelectContainer = () => {
     setSelectNumberTwoValue(item.target.value);
   }
 
-  function handleFrequenceOne(item) {
-    setFrequenceOne(item.target.value);
+  // function handleFrequenceOne(item) {
+  //   setFrequenceOne(item.target.value);
+  // }
+
+  // function handleFrequenceTwo(item) {
+  //   setFrequenceTwo(item.target.value);
+  // }
+
+  function handleImgSelecter(item) {
+    console.log(item);
+    setListOfImg(false);
   }
 
-  function handleFrequenceTwo(item) {
-    setFrequenceTwo(item.target.value);
+  function showListImg(s) {
+    console.log(listOfImg);
+    setListOfImg(!listOfImg);
   }
 
   return (
@@ -68,9 +68,18 @@ const SelectContainer = () => {
         <div>
           <h3>Ambiente Objeto</h3>
           <SelectComponent
+            showList={listOfImg}
+            callbackImgSelect={(item) => handleImgSelecter(item)}
+            cb={() => showListImg()}
             hasInput={true}
-            selectedOption={firstSelect}
-            selectOptions={data.map((id) => id["Nome Produtos"])}
+            selectImage={data.map((id) => id["Imagens Produtos"])}
+            selectedOption={
+              <DragDrop
+                width="100%"
+                height="100px"
+                message="selecionar imagem"
+              />
+            }
             fcSelect={(item) => handleItem(item)}
           />
         </div>
@@ -80,7 +89,7 @@ const SelectContainer = () => {
           <SelectComponent
             selectedOption={product}
             selectOptions={data.map(
-              (imgProduto) => imgProduto["Imagens Produtos"]
+              (imgProduto) => imgProduto["Nome Produtos"]
             )}
             fcSelect={(item) => selectedProducts(item)}
           />
@@ -134,7 +143,7 @@ const SelectContainer = () => {
         /> */}
       </SelectContainerComponent>
 
-      <ToPrint ref={componentRef}>
+      <ToPrint>
         <div>
           <h3>Para limpar</h3>
           <span>{firstSelect}</span>
@@ -164,11 +173,6 @@ const SelectContainer = () => {
           </span>
         </div>
       </ToPrint>
-
-      <ReactToPrint
-        trigger={() => <button>Imprimir!</button>}
-        content={() => componentRef.current}
-      />
     </Container>
   );
 };

@@ -4,6 +4,7 @@ import {
   SelectComponentDiv,
   ContainerCall,
   SelectSize,
+  SelectComponentImg,
 } from "./styles";
 
 const SelectComponent = ({
@@ -16,16 +17,38 @@ const SelectComponent = ({
   selectSizeOne,
   selectSizeTwo,
   hasInput,
+  selectImage,
+  callbackImgSelect,
+  cb,
+  showList,
 }) => {
   return (
     <Container>
-      <SelectComponentDiv onChange={fcSelect}>
-        {selectOptions.map((item, index) => (
-          <option key={index} value={item}>
-            {item}
-          </option>
-        ))}
-      </SelectComponentDiv>
+      {selectImage && (
+        <>
+          <button onClick={cb}>Selecionar imagem</button>
+          {showList && (
+            <SelectComponentImg>
+              {selectImage.map((item) => (
+                <img
+                  onClick={() => callbackImgSelect(item)}
+                  src={item}
+                  alt={item}
+                />
+              ))}
+            </SelectComponentImg>
+          )}
+        </>
+      )}
+      {selectOptions && (
+        <SelectComponentDiv onChange={fcSelect}>
+          {selectOptions.map((item, index) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
+        </SelectComponentDiv>
+      )}
 
       {selectSize ? (
         <>
