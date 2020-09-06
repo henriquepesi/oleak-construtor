@@ -8,8 +8,13 @@ export const SelectContainerComponent = styled.div`
   display: grid;
   grid-template-columns:
     minmax(200px, 1fr) minmax(200px, 1fr) minmax(200px, 1fr)
-    minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
+    minmax(100px, 1fr) minmax(100px, 1fr);
   grid-gap: 1.5em;
+
+  h3 {
+    text-align: center;
+    padding-bottom: 10px;
+  }
 `;
 
 export const ToPrint = styled.div`

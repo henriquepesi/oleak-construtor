@@ -1,6 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SelectComponent from "../SelectComponent";
 import ReactToPrint from "react-to-print";
+
+import data from "../../data/data";
 
 import { Container, SelectContainerComponent, ToPrint } from "./styles";
 
@@ -14,8 +16,19 @@ const SelectContainer = () => {
 
   const [frequenceOne, setFrequenceOne] = useState("0");
   const [frequenceTwo, setFrequenceTwo] = useState("0");
+  const [datas, setDatas] = useState([]);
 
   const componentRef = useRef();
+  // useEffect(() => {
+  //   const loadData = () => {
+  //     setDatas(data);
+  //   };
+  //   loadData();
+  //   console.log(data[0]["Nome Produtos"]);
+  //   console.log(datas[0]["Nome Produtos"]);
+  // }, [datas]);
+
+  console.log(data.map((id) => console.log(id["Nome Produtos"])));
 
   function handleItem(item) {
     setFirstSelect(item.target.value);
@@ -52,47 +65,62 @@ const SelectContainer = () => {
   return (
     <Container>
       <SelectContainerComponent>
-        <SelectComponent
-          hasInput={true}
-          selectedOption={firstSelect}
-          selectOptions={["Para limpar", "Escola", "Escritório"]}
-          fcSelect={(item) => handleItem(item)}
-        />
+        <div>
+          <h3>Ambiente Objeto</h3>
+          <SelectComponent
+            hasInput={true}
+            selectedOption={firstSelect}
+            selectOptions={data.map((id) => id["Nome Produtos"])}
+            fcSelect={(item) => handleItem(item)}
+          />
+        </div>
 
-        <SelectComponent
-          selectedOption={product}
-          selectOptions={["Produtos", "Produto 1", "Produto 2", "Produto 3"]}
-          fcSelect={(item) => selectedProducts(item)}
-        />
+        <div>
+          <h3>Produto</h3>
+          <SelectComponent
+            selectedOption={product}
+            selectOptions={data.map(
+              (imgProduto) => imgProduto["Imagens Produtos"]
+            )}
+            fcSelect={(item) => selectedProducts(item)}
+          />
+        </div>
 
-        <SelectComponent
-          hasInput={true}
-          selectedOption={build}
-          selectOptions={["Preparo", "Prepato 1", "Preparo 2"]}
-          fcSelect={(item) => selectedBuild(item)}
-        />
+        <div>
+          <h3>Preparo / Diluição</h3>
+          <SelectComponent
+            hasInput={true}
+            selectedOption={build}
+            selectOptions={["Preparo", "Prepato 1", "Preparo 2"]}
+            fcSelect={(item) => selectedBuild(item)}
+          />
+        </div>
+        <div>
+          <h3>Procedimento</h3>
+          <SelectComponent
+            selectSize={true}
+            selectNumberOne={selectNumberOneValue}
+            selectNumberTwo={selectNumberTwoValue}
+            selectOptions={["Para limpar", "Escola", "Escritório"]}
+            selectSizeOne={(item) => {
+              handleDiluicaoNumberOne(item);
+            }}
+            selectSizeTwo={(item) => {
+              handleDiluicaoNumberTwo(item);
+            }}
+          />
+        </div>
 
-        <SelectComponent
-          selectSize={true}
-          selectNumberOne={selectNumberOneValue}
-          selectNumberTwo={selectNumberTwoValue}
-          selectOptions={["Para limpar", "Escola", "Escritório"]}
-          selectSizeOne={(item) => {
-            handleDiluicaoNumberOne(item);
-          }}
-          selectSizeTwo={(item) => {
-            handleDiluicaoNumberTwo(item);
-          }}
-        />
-
-        <SelectComponent
-          hasInput={true}
-          selectedOption={procedure}
-          selectOptions={["Procedimento", "Procedimento 1", "Procedimento 2"]}
-          fcSelect={(item) => selectedProcedure(item)}
-        />
-
-        <SelectComponent
+        <div>
+          <h3>Frequência</h3>
+          <SelectComponent
+            hasInput={true}
+            selectedOption={procedure}
+            selectOptions={["Procedimento", "Procedimento 1", "Procedimento 2"]}
+            fcSelect={(item) => selectedProcedure(item)}
+          />
+        </div>
+        {/* <SelectComponent
           selectSize={true}
           selectNumberOne={frequenceOne}
           selectNumberTwo={frequenceTwo}
@@ -103,7 +131,7 @@ const SelectContainer = () => {
           selectSizeTwo={(item) => {
             handleFrequenceTwo(item);
           }}
-        />
+        /> */}
       </SelectContainerComponent>
 
       <ToPrint ref={componentRef}>

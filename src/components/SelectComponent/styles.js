@@ -9,6 +9,10 @@ export const Container = styled.div`
     border: none;
     padding: 1em;
     font-size: 0.8em;
+    height: 100px;
+  }
+  input[type="text"] {
+    padding-bottom: 70px;
   }
 `;
 
@@ -24,6 +28,8 @@ export const ContainerCall = styled.div`
   p {
     font-size: 1.2em;
     color: #929292;
+    padding: 10px;
+    text-align: center;
   }
 `;
 

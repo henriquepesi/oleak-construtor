@@ -31,7 +31,7 @@ const img = {
   height: 150,
 };
 
-export default function DragDrop(props) {
+export default function DragDrop({ message }) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -53,8 +53,6 @@ export default function DragDrop(props) {
       </div>
     </div>
   ));
-
-  console.log(thumbs);
 
   useEffect(
     () => () => {
@@ -82,7 +80,7 @@ export default function DragDrop(props) {
               padding: 10,
             }}
           >
-            Drag 'n' drop some files here, or click to select files
+            {message}
           </div>
         ) : (
           <div style={thumbsContainer}>{thumbs}</div>
