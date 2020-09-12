@@ -6,21 +6,28 @@ import Header from "./components/Header";
 import GlobalStyle from "./styles/global";
 import ReactToPrint from "react-to-print";
 import Modal from "./components/Modal";
+import Box from "./components/Box";
+
+import ModalProvider from "./hooks/Modal";
 
 const App = () => {
   const componentRef = useRef();
 
   return (
-    <div ref={componentRef} className="App">
-      <GlobalStyle />
-      <Modal />
-      {/* <Header /> */}
-      {/* <SelectContainer />
+    <ModalProvider>
+      <div ref={componentRef} className="App">
+        <GlobalStyle />
+        <Modal />
+        <Box />
+        <Box />
+        {/* <Header /> */}
+        {/* <SelectContainer />
       <ReactToPrint
         trigger={() => <button>Imprimir!</button>}
         content={() => componentRef.current}
       /> */}
-    </div>
+      </div>
+    </ModalProvider>
   );
 };
 

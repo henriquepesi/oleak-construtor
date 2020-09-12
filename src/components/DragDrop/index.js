@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
+import { DragContainer, DragImage } from "./styles";
+
 const thumbsContainer = {
   display: "flex",
   flexDirection: "row",
@@ -49,7 +51,7 @@ export default function DragDrop({ message, width, height, imgSelected }) {
   const thumbs = files.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
-        <img src={file.preview} style={img} />
+        <DragImage src={file.preview} />
       </div>
     </div>
   ));
@@ -67,23 +69,7 @@ export default function DragDrop({ message, width, height, imgSelected }) {
       <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
         {!thumbs.length ? (
-          <div
-            style={{
-              // background: "#f2f4f6",
-              background: "#e4e4e4",
-              width: width,
-              height: height,
-              cursor: "grab",
-              borderRadius: 5,
-              marginRight: 20,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: 10,
-            }}
-          >
-            {message}
-          </div>
+          <DragContainer>{message}</DragContainer>
         ) : (
           <div style={thumbsContainer}>{thumbs}</div>
         )}
