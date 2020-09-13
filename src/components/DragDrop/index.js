@@ -72,36 +72,16 @@ export default function DragDrop({ message, width, height, imgSelected }) {
     setSelectImg(item["Imagens Produtos"]);
     setShowModal(false);
     setHasImage(true);
-    // thumbs = [];
-    console.log(thumbs[0]);
+    setFiles([]);
   };
 
-  // useEffect(() => {
-  //   let thumbs = files.map((file) => (
-  //     <div style={thumb} key={file.name}>
-  //       <div style={thumbInner}>
-  //         <DragImage src={selectImg} />
-  //       </div>
-  //     </div>
-  //   ));
-  // }, [files]);
-
-  useEffect(() => {
-    // let thumbs = (
-    //   <div style={thumb}>
-    //     <div style={thumbInner}>
-    //       <DragImage src={selectImg} />
-    //     </div>
-    //   </div>
-    // );
-  }, [selectImg]);
-  // useEffect(
-  //   () => () => {
-  //     // Make sure to revoke the data uris to avoid memory leaks
-  //     files.forEach((file) => URL.revokeObjectURL(file.preview));
-  //   },
-  //   [files]
-  // );
+  useEffect(
+    () => () => {
+      // Make sure to revoke the data uris to avoid memory leaks
+      files.forEach((file) => URL.revokeObjectURL(file.preview));
+    },
+    [files]
+  );
 
   return (
     <>
@@ -139,8 +119,7 @@ export default function DragDrop({ message, width, height, imgSelected }) {
       <section className="container">
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
-          {/* {!hasImage ? "oi" : hasImage ? "aassa" : "aaaa"} */}
-          {!hasImage ? (
+          {!hasImage && !thumbs.length ? (
             (console.log(thumbs), (<DragContainer>{message}</DragContainer>))
           ) : thumbs.length ? (
             (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
