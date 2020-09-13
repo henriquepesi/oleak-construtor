@@ -1,10 +1,10 @@
 import React from "react";
 
-import Ambiente from "../components/Ambiente";
-import Produto from "../components/Produto";
-import Preparo from "../components/Preparo";
-import Procedimento from "../components/Procedimento";
-import Frequencia from "../components/Frequencia";
+import Ambiente from "../components/Boxes/Ambiente";
+import Produto from "../components/Boxes/Produto";
+import Preparo from "../components/Boxes/Preparo";
+import Procedimento from "../components/Boxes/Procedimento";
+import Frequencia from "../components/Boxes/Frequencia";
 
 import { Container } from "./styles";
 

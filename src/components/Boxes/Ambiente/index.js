@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import data from "../../data/data";
+import data from "../../../data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -42,18 +42,17 @@ const thumbInner = {
   overflow: "hidden",
 };
 
-export default function Frequencia() {
-  const [showModal, setShowModal] = useState(false);
-
+export default function Ambiente() {
   const [files, setFiles] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
 
-  const filterItemsProduto = data.filter((item) => {
+  const filterItemsAmbient = data.filter((item) => {
     return (
-      item.NomeProduto &&
-      item.NomeProduto.toLowerCase().includes(search.toLowerCase())
+      item.NomeAmbiente &&
+      item["NomeAmbiente"].toLowerCase().includes(search.toLowerCase())
     );
   });
 
@@ -79,7 +78,7 @@ export default function Frequencia() {
   ));
 
   const handleSelectItem = (item) => {
-    setSelectImg(item.ImagemProduto);
+    setSelectImg(item["ImagemAmbiente"]);
     setShowModal(false);
     setHasImage(true);
     setFiles([]);
@@ -96,7 +95,7 @@ export default function Frequencia() {
   return (
     <ContainerBox>
       <BoxHeader onClick={() => setShowModal(!showModal)}>
-        <BoxTitle>Produto</BoxTitle>
+        <BoxTitle>Ambiente / Objeto</BoxTitle>
 
         <FontAwesomeIcon icon={faSearch} color="rgba(219, 25, 67)" />
       </BoxHeader>
@@ -117,16 +116,16 @@ export default function Frequencia() {
             onChange={(e) => setSearch(e.target.value)}
           />
           <ContainerModalItens>
-            {filterItemsProduto.map(
+            {filterItemsAmbient.map(
               (item) =>
-                item.NomeProduto && (
+                item.NomeAmbiente && (
                   <ContainerModalItem onClick={() => handleSelectItem(item)}>
                     <ContainerModalImage
-                      src={item.ImagemProduto}
-                      alt={item.NomeProduto}
+                      src={item["ImagemAmbiente"]}
+                      alt={item["NomeAmbiente"]}
                     />
                     <ContainerModalTitle>
-                      {item.NomeProduto}
+                      {item["NomeAmbiente"]}
                     </ContainerModalTitle>
                   </ContainerModalItem>
                 )

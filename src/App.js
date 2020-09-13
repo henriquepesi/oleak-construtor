@@ -8,6 +8,8 @@ import Box from "./components/Box";
 import Pages from "./pages";
 import ModalProvider from "./hooks/Modal";
 
+import Header from "./components/Header";
+
 const App = () => {
   const componentRef = useRef();
 
@@ -15,6 +17,7 @@ const App = () => {
     <ModalProvider>
       <div ref={componentRef} className="App">
         <GlobalStyle />
+        <Header />
         <Pages />
       </div>
     </ModalProvider>

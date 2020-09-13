@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import data from "../../data/data";
+import data from "../../../data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -42,17 +42,18 @@ const thumbInner = {
   overflow: "hidden",
 };
 
-export default function Ambiente() {
-  const [files, setFiles] = useState([]);
+export default function Procedimento() {
   const [showModal, setShowModal] = useState(false);
+
+  const [files, setFiles] = useState([]);
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
 
-  const filterItemsAmbient = data.filter((item) => {
+  const filterItemsProduto = data.filter((item) => {
     return (
-      item.NomeAmbiente &&
-      item["NomeAmbiente"].toLowerCase().includes(search.toLowerCase())
+      item.NomeProduto &&
+      item.NomeProduto.toLowerCase().includes(search.toLowerCase())
     );
   });
 
@@ -78,7 +79,7 @@ export default function Ambiente() {
   ));
 
   const handleSelectItem = (item) => {
-    setSelectImg(item["ImagemAmbiente"]);
+    setSelectImg(item.ImagemProduto);
     setShowModal(false);
     setHasImage(true);
     setFiles([]);
@@ -95,7 +96,7 @@ export default function Ambiente() {
   return (
     <ContainerBox>
       <BoxHeader onClick={() => setShowModal(!showModal)}>
-        <BoxTitle>Ambiente / Objeto</BoxTitle>
+        <BoxTitle>Produto</BoxTitle>
 
         <FontAwesomeIcon icon={faSearch} color="rgba(219, 25, 67)" />
       </BoxHeader>
@@ -116,16 +117,16 @@ export default function Ambiente() {
             onChange={(e) => setSearch(e.target.value)}
           />
           <ContainerModalItens>
-            {filterItemsAmbient.map(
+            {filterItemsProduto.map(
               (item) =>
-                item.NomeAmbiente && (
+                item.NomeProduto && (
                   <ContainerModalItem onClick={() => handleSelectItem(item)}>
                     <ContainerModalImage
-                      src={item["ImagemAmbiente"]}
-                      alt={item["NomeAmbiente"]}
+                      src={item.ImagemProduto}
+                      alt={item.NomeProduto}
                     />
                     <ContainerModalTitle>
-                      {item["NomeAmbiente"]}
+                      {item.NomeProduto}
                     </ContainerModalTitle>
                   </ContainerModalItem>
                 )
