@@ -22,6 +22,7 @@ export const ContainerModal = styled.div`
   border-radius: 4px;
   overflow: hidden;
   overflow-y: scroll;
+  z-index: 5;
 `;
 
 export const ContainerModalSearch = styled.input`

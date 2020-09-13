@@ -16,29 +16,50 @@ import data from "../../data/data";
 function Modal() {
   console.log(data);
   const { showModal, setShowModal } = useModal();
+  const [search, setSearch] = useState("");
 
+  // let imgItem = item["Imagens Produtos"]
   const handleSelectProducct = (item) => {
     console.log(item["Imagens Produtos"]);
   };
 
-  // const handleOpenModal = () => {
-  //   setShowModal(!showModal);
-  //   console.log(showModal);
-  // };
+  const filterItems = data.filter((item) => {
+    return item["Nome Produtos"].toLowerCase().includes(search.toLowerCase());
+  });
+
+  const handleSelectItem = (item) => {
+    console.log(item["Imagens Produtos"]);
+    setShowModal(false);
+  };
 
   return (
     <Container
-      onClick={() => {
-        setShowModal(!showModal);
+      onClick={(e) => {
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        if (e.target === e.currentTarget) {
+          setShowModal(!showModal);
+        }
       }}
       showModal={showModal}
     >
       <ContainerModal>
-        <ContainerModalSearch type="search" placeholder="Buscar ..." />
+        <ContainerModalSearch
+          type="search"
+          placeholder="Buscar ..."
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <ContainerModalItens>
-          {data.map((item) => (
-            <ContainerModalItem onClick={() => handleSelectProducct(item)}>
-              <ContainerModalImage src={item["Imagens Produtos"]} alt="oi" />
+          {filterItems.map((item) => (
+            <ContainerModalItem
+              onClick={
+                (() => handleSelectProducct(item), () => handleSelectItem(item))
+              }
+            >
+              <ContainerModalImage
+                src={item["Imagens Produtos"]}
+                alt={item["Nome Produtos"]}
+              />
               <ContainerModalTitle>{item["Nome Produtos"]}</ContainerModalTitle>
             </ContainerModalItem>
           ))}
