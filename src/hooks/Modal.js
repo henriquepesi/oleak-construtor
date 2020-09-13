@@ -4,9 +4,12 @@ export const ModalContext = createContext();
 
 export default function ModalProvider({ children }) {
   const [showModal, setShowModal] = useState(false);
+  const [selectProduct, setSelectProduct] = useState("");
 
   return (
-    <ModalContext.Provider value={{ showModal, setShowModal }}>
+    <ModalContext.Provider
+      value={{ showModal, setShowModal, selectProduct, setSelectProduct }}
+    >
       {children}
     </ModalContext.Provider>
   );
@@ -14,7 +17,7 @@ export default function ModalProvider({ children }) {
 
 export function useModal() {
   const context = useContext(ModalContext);
-  const { showModal, setShowModal } = context;
+  const { showModal, setShowModal, selectProduct, setSelectProduct } = context;
 
-  return { showModal, setShowModal };
+  return { showModal, setShowModal, selectProduct, setSelectProduct };
 }

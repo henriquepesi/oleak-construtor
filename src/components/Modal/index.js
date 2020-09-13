@@ -2,38 +2,31 @@ import React, { useState } from "react";
 import { useModal } from "../../hooks/Modal";
 
 import {
-  Container,
   ContainerModal,
   ContainerModalSearch,
   ContainerModalItem,
   ContainerModalImage,
   ContainerModalTitle,
   ContainerModalItens,
+  ContainerMainModal,
 } from "./styles";
 
 import data from "../../data/data";
 
 function Modal() {
-  console.log(data);
   const { showModal, setShowModal } = useModal();
   const [search, setSearch] = useState("");
-
-  // let imgItem = item["Imagens Produtos"]
-  const handleSelectProducct = (item) => {
-    console.log(item["Imagens Produtos"]);
-  };
 
   const filterItems = data.filter((item) => {
     return item["Nome Produtos"].toLowerCase().includes(search.toLowerCase());
   });
 
   const handleSelectItem = (item) => {
-    console.log(item["Imagens Produtos"]);
     setShowModal(false);
   };
 
   return (
-    <Container
+    <ContainerMainModal
       onClick={(e) => {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
@@ -51,11 +44,7 @@ function Modal() {
         />
         <ContainerModalItens>
           {filterItems.map((item) => (
-            <ContainerModalItem
-              onClick={
-                (() => handleSelectProducct(item), () => handleSelectItem(item))
-              }
-            >
+            <ContainerModalItem onClick={() => handleSelectItem(item)}>
               <ContainerModalImage
                 src={item["Imagens Produtos"]}
                 alt={item["Nome Produtos"]}
@@ -65,7 +54,7 @@ function Modal() {
           ))}
         </ContainerModalItens>
       </ContainerModal>
-    </Container>
+    </ContainerMainModal>
   );
 }
 

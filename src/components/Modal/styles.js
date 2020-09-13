@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const ContainerMainModal = styled.div`
   position: absolute;
   top: 0;
   right: 0;

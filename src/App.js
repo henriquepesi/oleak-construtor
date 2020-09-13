@@ -17,9 +17,8 @@ const App = () => {
     <ModalProvider>
       <div ref={componentRef} className="App">
         <GlobalStyle />
-        <Modal />
-        <Box />
-        <Box />
+        <Box itemClicked="" title="Ambiente / Objeto " />
+        {/* <Box /> */}
         {/* <Header /> */}
         {/* <SelectContainer />
       <ReactToPrint

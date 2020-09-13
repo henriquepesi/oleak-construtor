@@ -1,7 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { useModal } from "../../hooks/Modal";
+import data from "../../data/data";
 
-import { DragContainer, DragImage } from "./styles";
+import {
+  DragContainer,
+  DragImage,
+  ContainerModal,
+  ContainerModalSearch,
+  ContainerModalItem,
+  ContainerModalImage,
+  ContainerModalTitle,
+  ContainerModalItens,
+  ContainerMainModal,
+} from "./styles";
 
 const thumbsContainer = {
   display: "flex",
@@ -12,9 +24,6 @@ const thumbsContainer = {
 const thumb = {
   display: "inline-flex",
   borderRadius: 2,
-  // border: "1px solid #eaeaea",
-  marginBottom: 8,
-  marginRight: 8,
   height: "auto",
   maxWidth: "100%",
   padding: 4,
@@ -27,14 +36,17 @@ const thumbInner = {
   overflow: "hidden",
 };
 
-const img = {
-  display: "block",
-  maxWidth: "auto",
-  height: 150,
-};
-
 export default function DragDrop({ message, width, height, imgSelected }) {
   const [files, setFiles] = useState([]);
+  const { showModal, setShowModal } = useModal();
+  const [search, setSearch] = useState("");
+  const [selectImg, setSelectImg] = useState("");
+  const [hasImage, setHasImage] = useState(false);
+
+  const filterItems = data.filter((item) => {
+    return item["Nome Produtos"].toLowerCase().includes(search.toLowerCase());
+  });
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -48,7 +60,7 @@ export default function DragDrop({ message, width, height, imgSelected }) {
     },
   });
 
-  const thumbs = files.map((file) => (
+  let thumbs = files.map((file) => (
     <div style={thumb} key={file.name}>
       <div style={thumbInner}>
         <DragImage src={file.preview} />
@@ -56,25 +68,92 @@ export default function DragDrop({ message, width, height, imgSelected }) {
     </div>
   ));
 
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
+  const handleSelectItem = (item) => {
+    setSelectImg(item["Imagens Produtos"]);
+    setShowModal(false);
+    setHasImage(true);
+    // thumbs = [];
+    console.log(thumbs[0]);
+  };
+
+  // useEffect(() => {
+  //   let thumbs = files.map((file) => (
+  //     <div style={thumb} key={file.name}>
+  //       <div style={thumbInner}>
+  //         <DragImage src={selectImg} />
+  //       </div>
+  //     </div>
+  //   ));
+  // }, [files]);
+
+  useEffect(() => {
+    // let thumbs = (
+    //   <div style={thumb}>
+    //     <div style={thumbInner}>
+    //       <DragImage src={selectImg} />
+    //     </div>
+    //   </div>
+    // );
+  }, [selectImg]);
+  // useEffect(
+  //   () => () => {
+  //     // Make sure to revoke the data uris to avoid memory leaks
+  //     files.forEach((file) => URL.revokeObjectURL(file.preview));
+  //   },
+  //   [files]
+  // );
 
   return (
-    <section className="container">
-      <div {...getRootProps({ className: "dropzone" })}>
-        <input {...getInputProps()} />
-        {!thumbs.length ? (
-          <DragContainer>{message}</DragContainer>
-        ) : (
-          <div style={thumbsContainer}>{thumbs}</div>
-        )}
-      </div>
-      <aside style={thumbsContainer}></aside>
-    </section>
+    <>
+      <ContainerMainModal
+        onClick={(e) => {
+          e.stopPropagation();
+          e.nativeEvent.stopImmediatePropagation();
+          if (e.target === e.currentTarget) {
+            setShowModal(!showModal);
+          }
+        }}
+        showModal={showModal}
+      >
+        <ContainerModal>
+          <ContainerModalSearch
+            type="search"
+            placeholder="Buscar ..."
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <ContainerModalItens>
+            {filterItems.map((item) => (
+              <ContainerModalItem onClick={() => handleSelectItem(item)}>
+                <ContainerModalImage
+                  src={item["Imagens Produtos"]}
+                  alt={item["Nome Produtos"]}
+                />
+                <ContainerModalTitle>
+                  {item["Nome Produtos"]}
+                </ContainerModalTitle>
+              </ContainerModalItem>
+            ))}
+          </ContainerModalItens>
+        </ContainerModal>
+      </ContainerMainModal>
+      <section className="container">
+        <div {...getRootProps({ className: "dropzone" })}>
+          <input {...getInputProps()} />
+          {/* {!hasImage ? "oi" : hasImage ? "aassa" : "aaaa"} */}
+          {!hasImage ? (
+            (console.log(thumbs), (<DragContainer>{message}</DragContainer>))
+          ) : thumbs.length ? (
+            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
+          ) : (
+            <div style={thumb}>
+              <div style={thumbInner}>
+                <DragImage src={selectImg} />
+              </div>
+            </div>
+          )}
+        </div>
+        <aside style={thumbsContainer}></aside>
+      </section>
+    </>
   );
 }
