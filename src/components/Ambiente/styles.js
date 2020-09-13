@@ -6,7 +6,7 @@ export const DragContainer = styled.div`
   align-items: center;
   padding: 0 12px;
   height: 170px;
-  width: 100%;
+  width: 170px;
   cursor: pointer;
   border-radius: 4px;
   background-color: #f5f7f9;
@@ -15,14 +15,14 @@ export const DragContainer = styled.div`
   letter-spacing: 0.02em;
   text-align: center;
   border: dashed 2px #c7c9cb;
-  margin: 20px 0;
+  margin: 20px auto;
 `;
 
 export const DragImage = styled.img`
   display: block;
-  width: 100%;
+  max-width: 170px;
   height: auto;
-  margin: 20px 0;
+  margin: 17px 0;
 `;
 
 export const ContainerMainModal = styled.div`
@@ -88,4 +88,39 @@ export const ContainerModalImage = styled.img`
 
 export const ContainerModalTitle = styled.h3`
   font-size: 12px;
+`;
+
+export const ContainerBox = styled.div`
+  background: white;
+  padding: 20px 10px;
+  border-radius: 4px;
+  box-shadow: 0 0.4rem 3rem rgba(22, 28, 45, 0.04);
+  width: 230px;
+`;
+
+export const BoxHeader = styled.div`
+  border-radius: 4px;
+  box-shadow: 0 0.4rem 3rem rgba(22, 28, 45, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const BoxTitle = styled.h3`
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #000;
+`;
+
+export const TextAreaBox = styled.textarea`
+  font-family: sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+  min-width: 100%;
+  width: 100%;
+  padding: 10px;
+  border: solid 2px #d7d9db;
+  margin-bottom: 0 !important;
+  border-radius: 4px;
+  height: 85px;
 `;

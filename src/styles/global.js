@@ -12,6 +12,7 @@ export default createGlobalStyle`
     -webkit-font-smothing: antialiased;
     color: #3e3e3e;
     font-weight: 600;
+    overflow-x: hidden;
   }
   body, input, button {
     font-family: 'Open Sans', sans-serif;

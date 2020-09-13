@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useModal } from "../../hooks/Modal";
 import data from "../../data/data";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import {
   DragContainer,
@@ -13,6 +15,10 @@ import {
   ContainerModalTitle,
   ContainerModalItens,
   ContainerMainModal,
+  ContainerBox,
+  BoxHeader,
+  BoxTitle,
+  TextAreaBox,
 } from "./styles";
 
 const thumbsContainer = {
@@ -36,15 +42,19 @@ const thumbInner = {
   overflow: "hidden",
 };
 
-export default function DragDrop({ message, width, height, imgSelected }) {
+export default function Procedimento() {
+  const [showModal, setShowModal] = useState(false);
+
   const [files, setFiles] = useState([]);
-  const { showModal, setShowModal } = useModal();
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
 
-  const filterItems = data.filter((item) => {
-    return item["Nome Produtos"].toLowerCase().includes(search.toLowerCase());
+  const filterItemsProduto = data.filter((item) => {
+    return (
+      item.NomeProduto &&
+      item.NomeProduto.toLowerCase().includes(search.toLowerCase())
+    );
   });
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -69,7 +79,7 @@ export default function DragDrop({ message, width, height, imgSelected }) {
   ));
 
   const handleSelectItem = (item) => {
-    setSelectImg(item["Imagens Produtos"]);
+    setSelectImg(item.ImagemProduto);
     setShowModal(false);
     setHasImage(true);
     setFiles([]);
@@ -84,7 +94,12 @@ export default function DragDrop({ message, width, height, imgSelected }) {
   );
 
   return (
-    <>
+    <ContainerBox>
+      <BoxHeader onClick={() => setShowModal(!showModal)}>
+        <BoxTitle>Produto</BoxTitle>
+
+        <FontAwesomeIcon icon={faSearch} color="rgba(219, 25, 67)" />
+      </BoxHeader>
       <ContainerMainModal
         onClick={(e) => {
           e.stopPropagation();
@@ -102,17 +117,20 @@ export default function DragDrop({ message, width, height, imgSelected }) {
             onChange={(e) => setSearch(e.target.value)}
           />
           <ContainerModalItens>
-            {filterItems.map((item) => (
-              <ContainerModalItem onClick={() => handleSelectItem(item)}>
-                <ContainerModalImage
-                  src={item["Imagens Produtos"]}
-                  alt={item["Nome Produtos"]}
-                />
-                <ContainerModalTitle>
-                  {item["Nome Produtos"]}
-                </ContainerModalTitle>
-              </ContainerModalItem>
-            ))}
+            {filterItemsProduto.map(
+              (item) =>
+                item.NomeProduto && (
+                  <ContainerModalItem onClick={() => handleSelectItem(item)}>
+                    <ContainerModalImage
+                      src={item.ImagemProduto}
+                      alt={item.NomeProduto}
+                    />
+                    <ContainerModalTitle>
+                      {item.NomeProduto}
+                    </ContainerModalTitle>
+                  </ContainerModalItem>
+                )
+            )}
           </ContainerModalItens>
         </ContainerModal>
       </ContainerMainModal>
@@ -120,7 +138,8 @@ export default function DragDrop({ message, width, height, imgSelected }) {
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           {!hasImage && !thumbs.length ? (
-            (console.log(thumbs), (<DragContainer>{message}</DragContainer>))
+            (console.log(thumbs),
+            (<DragContainer>colocar imagem</DragContainer>))
           ) : thumbs.length ? (
             (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
           ) : (
@@ -131,8 +150,8 @@ export default function DragDrop({ message, width, height, imgSelected }) {
             </div>
           )}
         </div>
-        <aside style={thumbsContainer}></aside>
       </section>
-    </>
+      <TextAreaBox placeholder="Instruções" />
+    </ContainerBox>
   );
 }
