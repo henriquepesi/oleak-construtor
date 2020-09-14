@@ -18,8 +18,13 @@ const App = () => {
       <div ref={componentRef} className="App">
         <GlobalStyle />
         <Header />
+        <div pageStyle={"width: 20px"}></div>
         <Pages />
       </div>
+      <ReactToPrint
+        trigger={() => <button>Imprimir!</button>}
+        content={() => componentRef.current}
+      />
     </ModalProvider>
   );
 };

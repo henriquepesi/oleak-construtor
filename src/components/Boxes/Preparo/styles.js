@@ -6,7 +6,7 @@ export const DragContainer = styled.div`
   align-items: center;
   padding: 0 12px;
   height: 170px;
-  width: 170px;
+  width: 100%;
   cursor: pointer;
   border-radius: 4px;
   background-color: #f5f7f9;
@@ -20,7 +20,7 @@ export const DragContainer = styled.div`
 
 export const DragImage = styled.img`
   display: block;
-  max-width: 170px;
+  max-width: 100%;
   height: auto;
   margin: 17px 0;
 `;

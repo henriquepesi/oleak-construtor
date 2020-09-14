@@ -110,27 +110,30 @@ export default function Preparo() {
         showModal={showModal}
       >
         <ContainerModal>
-          <ContainerModalSearch
-            type="search"
-            placeholder="Buscar ..."
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <ContainerModalItens>
-            {filterItemsAmbient.map(
-              (item) =>
-                item.NomeAmbiente && (
-                  <ContainerModalItem onClick={() => handleSelectItem(item)}>
-                    <ContainerModalImage
-                      src={item["ImagemAmbiente"]}
-                      alt={item["NomeAmbiente"]}
-                    />
-                    <ContainerModalTitle>
-                      {item["NomeAmbiente"]}
-                    </ContainerModalTitle>
-                  </ContainerModalItem>
-                )
-            )}
-          </ContainerModalItens>
+          <div>content</div>
+          <div>
+            <ContainerModalSearch
+              type="search"
+              placeholder="Buscar ..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <ContainerModalItens>
+              {filterItemsAmbient.map(
+                (item) =>
+                  item.NomeAmbiente && (
+                    <ContainerModalItem onClick={() => handleSelectItem(item)}>
+                      <ContainerModalImage
+                        src={item["ImagemAmbiente"]}
+                        alt={item["NomeAmbiente"]}
+                      />
+                      <ContainerModalTitle>
+                        {item["NomeAmbiente"]}
+                      </ContainerModalTitle>
+                    </ContainerModalItem>
+                  )
+              )}
+            </ContainerModalItens>
+          </div>
         </ContainerModal>
       </ContainerMainModal>
       <section className="container">

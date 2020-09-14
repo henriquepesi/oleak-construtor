@@ -2,14 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* background: red; */
+  width: 1200px;
+  margin: 50px auto;
+  justify-content: center;
   > div {
-    margin: 20px;
     width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    & + div {
+      margin-left: 15px;
+    }
   }
 `;
