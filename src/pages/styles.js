@@ -8,5 +8,8 @@ export const Container = styled.div`
   > div {
     margin: 20px;
     width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 `;

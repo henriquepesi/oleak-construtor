@@ -21,12 +21,6 @@ import {
   TextAreaBox,
 } from "./styles";
 
-const thumbsContainer = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-};
-
 const thumb = {
   display: "inline-flex",
   borderRadius: 2,
@@ -69,14 +63,6 @@ export default function Produto() {
       );
     },
   });
-
-  let thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <DragImage src={file.preview} />
-      </div>
-    </div>
-  ));
 
   const handleSelectItem = (item) => {
     setSelectImg(item.ImagemProduto);
@@ -135,13 +121,10 @@ export default function Produto() {
         </ContainerModal>
       </ContainerMainModal>
       <section className="container">
-        <div {...getRootProps({ className: "dropzone" })}>
+        <div>
           <input {...getInputProps()} />
-          {!hasImage && !thumbs.length ? (
-            (console.log(thumbs),
-            (<DragContainer>colocar imagem</DragContainer>))
-          ) : thumbs.length ? (
-            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
+          {!hasImage ? (
+            <DragContainer>Produto</DragContainer>
           ) : (
             <div style={thumb}>
               <div style={thumbInner}>

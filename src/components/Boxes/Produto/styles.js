@@ -7,7 +7,6 @@ export const DragContainer = styled.div`
   padding: 0 12px;
   height: 170px;
   width: 170px;
-  cursor: pointer;
   border-radius: 4px;
   background-color: #f5f7f9;
   font-size: 15px;
