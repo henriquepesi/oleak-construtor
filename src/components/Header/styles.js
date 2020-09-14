@@ -52,7 +52,10 @@ export const InputElement = styled.input`
   padding: 10px;
   border: solid 2px #d7d9db;
   border-radius: 4px;
-  margin-bottom: 15px;
+
+  & + input {
+    margin-top: 15px;
+  }
 `;
 
 export const InputFile = styled.label`

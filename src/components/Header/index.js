@@ -1,4 +1,5 @@
 import React from "react";
+import DragDrop from "../DragDrop";
 
 import {
   Container,
@@ -29,31 +30,24 @@ function Header() {
         <p>Monte Instruções de Limpeza e Higiene Profissional</p>
       </Slogan>
 
-      <InputFile class="btn-file" for="upload">
-        Logo Cliente
-      </InputFile>
+      <DragDrop> Logo CLiente </DragDrop>
 
-      <InputFile class="btn-file" for="upload">
-        Logo Cliente
-      </InputFile>
+      <DragDrop> Logo CLiente </DragDrop>
 
       <div>
-        <label for="phone">
-          <InputElement
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Telefone"
-          />
-        </label>
-        <label for="email">
-          <InputElement
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-          />
-        </label>
+        <InputElement
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Telefone"
+        />
+
+        <InputElement
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+        />
       </div>
     </Container>
   );
