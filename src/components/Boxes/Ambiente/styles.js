@@ -15,18 +15,19 @@ export const DragContainer = styled.div`
   letter-spacing: 0.02em;
   text-align: center;
   border: dashed 2px #c7c9cb;
-  margin: 20px auto;
+  margin: 20px auto 30px;
 `;
 
 export const DragImage = styled.img`
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 17px 0;
+  margin: 22px 0;
 `;
 
 export const ContainerMainModal = styled.div`
-  position: absolute;
+  position: fixed;
+  z-index: 10;
   top: 0;
   right: 0;
   width: 100vw;
@@ -123,4 +124,15 @@ export const TextAreaBox = styled.textarea`
   margin-bottom: 0 !important;
   border-radius: 4px;
   height: 85px;
+`;
+
+export const ModalNameOption = styled.div`
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 98px;
+  font-size: 0.85em;
 `;

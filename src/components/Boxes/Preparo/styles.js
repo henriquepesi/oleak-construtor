@@ -15,18 +15,19 @@ export const DragContainer = styled.div`
   letter-spacing: 0.02em;
   text-align: center;
   border: dashed 2px #c7c9cb;
-  margin: 20px auto;
+  margin: 20px auto 30px;
 `;
 
 export const DragImage = styled.img`
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 17px 0;
+  margin: 22px 0;
 `;
 
 export const ContainerMainModal = styled.div`
-  position: absolute;
+  position: fixed;
+  z-index: 10;
   top: 0;
   right: 0;
   width: 100vw;
@@ -38,6 +39,8 @@ export const ContainerMainModal = styled.div`
 `;
 
 export const ContainerModal = styled.div`
+  display: flex;
+  justify-content: space-around;
   background-color: #fefefe;
   margin: auto;
   padding: 30px;
@@ -123,4 +126,45 @@ export const TextAreaBox = styled.textarea`
   margin-bottom: 0 !important;
   border-radius: 4px;
   height: 85px;
+`;
+
+export const ModalInput = styled.input`
+  width: 150px;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  box-sizing: border-box;
+  height: 45px;
+  padding: 0 16px;
+  margin-bottom: 30px;
+  border: 0;
+  border-radius: 4px;
+  background: #f2f4f6;
+  margin-bottom: 0;
+`;
+
+export const ContainerModalValues = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const ContainerModalValuesTitle = styled.span`
+  padding-bottom: 0.5em;
+`;
+
+export const ButtonModal = styled.button`
+  width: 100%;
+`;
+
+export const ModalNameOption = styled.div`
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 98px;
+  font-size: 0.85em;
+
+  > * {
+    margin: 0 5px;
+  }
 `;

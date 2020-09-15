@@ -19,6 +19,7 @@ import {
   BoxHeader,
   BoxTitle,
   TextAreaBox,
+  ModalNameOption,
 } from "./styles";
 
 const thumbsContainer = {
@@ -48,6 +49,7 @@ export default function Ambiente() {
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
+  const [selectText, setSelectText] = useState("");
 
   const filterItemsAmbient = data.filter((item) => {
     return (
@@ -81,6 +83,7 @@ export default function Ambiente() {
     setSelectImg(item["ImagemAmbiente"]);
     setShowModal(false);
     setHasImage(true);
+    setSelectText(item["NomeAmbiente"]);
     setFiles([]);
   };
 
@@ -147,6 +150,11 @@ export default function Ambiente() {
                 <DragImage src={selectImg} />
               </div>
             </div>
+          )}
+          {selectText !== "" && !thumbs.length && (
+            <ModalNameOption>
+              <span>{selectText}</span>
+            </ModalNameOption>
           )}
         </div>
       </section>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import GlobalStyle from "./styles/global";
 import ReactToPrint from "react-to-print";
@@ -12,6 +12,15 @@ import Header from "./components/Header";
 
 const App = () => {
   const componentRef = useRef();
+  const [showElement, setShowElement] = useState(false);
+
+  const handleShowElement = () => {
+    setShowElement(true);
+  };
+
+  const handleRemoveElement = () => {
+    setShowElement(false);
+  };
 
   return (
     <ModalProvider>
@@ -20,6 +29,11 @@ const App = () => {
         <Header />
         <div pageStyle={"width: 20px"}></div>
         <Pages />
+        <button onClick={() => handleShowElement()}> add </button>
+        {showElement && <Pages />}
+        {showElement && (
+          <button onClick={() => handleRemoveElement()}> remove </button>
+        )}
       </div>
       <ReactToPrint
         trigger={() => <button>Imprimir!</button>}

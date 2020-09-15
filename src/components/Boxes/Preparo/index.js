@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import data from "../../../data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import {
   DragContainer,
@@ -19,6 +19,11 @@ import {
   BoxHeader,
   BoxTitle,
   TextAreaBox,
+  ModalInput,
+  ContainerModalValues,
+  ContainerModalValuesTitle,
+  ModalNameOption,
+  ButtonModal,
 } from "./styles";
 
 const thumbsContainer = {
@@ -42,12 +47,21 @@ const thumbInner = {
   overflow: "hidden",
 };
 
+const selectClickImg = {
+  outlineColor: "rgb(219, 25, 67)",
+  outlineWidth: 2,
+  outlineStyle: "solid",
+};
+
 export default function Preparo() {
   const [files, setFiles] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
+  const [select, setSelect] = useState(false);
+  const [produto, setProduto] = useState("");
+  const [agua, setAgua] = useState("");
 
   const filterItemsAmbient = data.filter((item) => {
     return (
@@ -77,9 +91,11 @@ export default function Preparo() {
     </div>
   ));
 
-  const handleSelectItem = (item) => {
+  const handleSelectItem = (item, key, status) => {
     setSelectImg(item["ImagemAmbiente"]);
-    setShowModal(false);
+    console.log(status === key);
+    setSelect(key);
+    // setShowModal(false);
     setHasImage(true);
     setFiles([]);
   };
@@ -110,7 +126,42 @@ export default function Preparo() {
         showModal={showModal}
       >
         <ContainerModal>
-          <div>content</div>
+          <div>
+            <ContainerModalValues>
+              <ContainerModalValuesTitle>
+                Porção Produto
+              </ContainerModalValuesTitle>
+              <ModalInput
+                type="text"
+                placeholder="0"
+                onChange={(e) => setProduto(e.target.value)}
+              />
+            </ContainerModalValues>
+            <FontAwesomeIcon
+              style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: ".8em",
+                marginBottom: ".5em",
+                display: "block",
+              }}
+              icon={faTimes}
+              color="rgba(219, 25, 67)"
+              size="2x"
+            />
+
+            <ContainerModalValues>
+              <ContainerModalValuesTitle>Porção Água</ContainerModalValuesTitle>
+              <ModalInput
+                type="text"
+                placeholder="0"
+                onChange={(e) => setAgua(e.target.value)}
+              />
+            </ContainerModalValues>
+            <ButtonModal onClick={() => setShowModal(!showModal)}>
+              Salvar
+            </ButtonModal>
+          </div>
           <div>
             <ContainerModalSearch
               type="search"
@@ -119,9 +170,13 @@ export default function Preparo() {
             />
             <ContainerModalItens>
               {filterItemsAmbient.map(
-                (item) =>
+                (item, key, status) =>
                   item.NomeAmbiente && (
-                    <ContainerModalItem onClick={() => handleSelectItem(item)}>
+                    <ContainerModalItem
+                      key={key}
+                      onClick={() => handleSelectItem(item, key)}
+                      status={select === key}
+                    >
                       <ContainerModalImage
                         src={item["ImagemAmbiente"]}
                         alt={item["NomeAmbiente"]}
@@ -140,16 +195,30 @@ export default function Preparo() {
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           {!hasImage && !thumbs.length ? (
-            (console.log(thumbs),
-            (<DragContainer>colocar imagem</DragContainer>))
+            <>
+              <DragContainer
+                hastext={agua.length !== 0 || produto.length !== 0}
+              >
+                colocar imagem
+              </DragContainer>
+            </>
           ) : thumbs.length ? (
-            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
+            <div style={thumbsContainer}>
+              <>{thumbs}</>
+            </div>
           ) : (
             <div style={thumb}>
               <div style={thumbInner}>
                 <DragImage src={selectImg} />
               </div>
             </div>
+          )}
+          {(agua || produto) !== "" && (
+            <ModalNameOption>
+              <span>{produto} Produto</span>
+              <FontAwesomeIcon icon={faTimes} color="rgba(219, 25, 67)" />
+              <span>{agua} Água</span>
+            </ModalNameOption>
           )}
         </div>
       </section>

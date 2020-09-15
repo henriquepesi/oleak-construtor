@@ -7,6 +7,7 @@ export const DragContainer = styled.div`
   padding: 0 12px;
   height: 170px;
   width: 100%;
+  cursor: pointer;
   border-radius: 4px;
   background-color: #f5f7f9;
   font-size: 15px;
@@ -38,6 +39,7 @@ export const ContainerMainModal = styled.div`
 `;
 
 export const ContainerModal = styled.div`
+  display: flex;
   background-color: #fefefe;
   margin: auto;
   padding: 30px;
@@ -123,4 +125,26 @@ export const TextAreaBox = styled.textarea`
   margin-bottom: 0 !important;
   border-radius: 4px;
   height: 85px;
+`;
+
+export const ModalInput = styled.input`
+  width: 150px;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  box-sizing: border-box;
+  height: 45px;
+  padding: 0 16px;
+  margin-bottom: 30px;
+  border: 0;
+  border-radius: 4px;
+  background: #f2f4f6;
+  margin-bottom: 0;
+`;
+
+export const ContainerModalValues = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const ContainerModalValuesTitle = styled.span`
+  padding-bottom: 0.5em;
 `;

@@ -23,7 +23,7 @@ export default createGlobalStyle`
   }
   button {
     cursor: pointer;
-    background: #e7525f;
+    background: rgb(219, 25, 67);
     border: none;
     border-radius: 5px;
     color: #fff;
