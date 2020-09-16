@@ -6,6 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import {
+  faCheckCircle,
+  faTimesCircle,
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
   DragContainer,
   DragImage,
   ContainerModal,
@@ -20,6 +25,9 @@ import {
   BoxTitle,
   TextAreaBox,
   ModalNameOption,
+  InputIcon,
+  TextAreaBoxCheck,
+  TextAreaContainer,
 } from "./styles";
 
 const thumbsContainer = {
@@ -50,6 +58,8 @@ export default function Ambiente() {
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
   const [selectText, setSelectText] = useState("");
+  const [message, setMessage] = useState("");
+  const [closeMessage, setCloseMessage] = useState(false);
 
   const filterItemsAmbient = data.filter((item) => {
     return (
@@ -158,7 +168,31 @@ export default function Ambiente() {
           )}
         </div>
       </section>
-      <TextAreaBox placeholder="Instruções" />
+      {!closeMessage ? (
+        <TextAreaContainer>
+          <TextAreaBox
+            value={message}
+            placeholder="Instruções"
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          {message !== "" && (
+            <InputIcon
+              onClick={() => setCloseMessage(!closeMessage)}
+              icon={faCheckCircle}
+              color="#19db79"
+            />
+          )}
+        </TextAreaContainer>
+      ) : (
+        <TextAreaBoxCheck>
+          {message}{" "}
+          <InputIcon
+            onClick={() => setCloseMessage(!closeMessage)}
+            icon={faTimesCircle}
+            color="#db1943"
+          />
+        </TextAreaBoxCheck>
+      )}
     </ContainerBox>
   );
 }

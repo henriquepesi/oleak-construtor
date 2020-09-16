@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const DragContainer = styled.div`
   display: flex;
@@ -143,4 +144,25 @@ export const ModalNameOption = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+`;
+
+export const InputIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  right: 0;
+  top: -5px;
+  cursor: pointer;
+
+  @media print {
+    display: none;
+  }
+`;
+
+export const TextAreaBoxCheck = styled.div`
+  height: 90px;
+  position: relative;
+  padding: 10px;
+`;
+
+export const TextAreaContainer = styled.div`
+  position: relative;
 `;

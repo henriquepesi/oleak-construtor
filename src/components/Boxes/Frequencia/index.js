@@ -3,10 +3,13 @@ import { useDropzone } from "react-dropzone";
 import data from "../../../data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
+  faCheckCircle,
+  faTimesCircle,
   faSearch,
-  faTimes,
   faCalendarCheck,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -28,6 +31,9 @@ import {
   ButtonModal,
   SelectOption,
   Calendar,
+  InputIcon,
+  TextAreaBoxCheck,
+  TextAreaContainer,
 } from "./styles";
 
 const thumb = {
@@ -55,6 +61,8 @@ export default function Produto() {
   const [selectText, setSelectText] = useState("");
   const [quantidade, setQuantidade] = useState("");
   const [frequencia, setFrequencia] = useState("");
+  const [message, setMessage] = useState("");
+  const [closeMessage, setCloseMessage] = useState(false);
 
   const filterItemsProduto = data.filter((item) => {
     return (
@@ -96,7 +104,7 @@ export default function Produto() {
   return (
     <ContainerBox>
       <BoxHeader onClick={() => setShowModal(!showModal)}>
-        <BoxTitle>Produto</BoxTitle>
+        <BoxTitle>Frequência</BoxTitle>
 
         <FontAwesomeIcon icon={faSearch} color="rgba(219, 25, 67)" />
       </BoxHeader>
@@ -152,7 +160,31 @@ export default function Produto() {
           )}
         </div>
       </section>
-      <TextAreaBox placeholder="Instruções" />
+      {!closeMessage ? (
+        <TextAreaContainer>
+          <TextAreaBox
+            value={message}
+            placeholder="Instruções"
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          {message !== "" && (
+            <InputIcon
+              onClick={() => setCloseMessage(!closeMessage)}
+              icon={faCheckCircle}
+              color="#19db79"
+            />
+          )}
+        </TextAreaContainer>
+      ) : (
+        <TextAreaBoxCheck>
+          {message}{" "}
+          <InputIcon
+            onClick={() => setCloseMessage(!closeMessage)}
+            icon={faTimesCircle}
+            color="#db1943"
+          />
+        </TextAreaBoxCheck>
+      )}
     </ContainerBox>
   );
 }

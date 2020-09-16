@@ -10,6 +10,9 @@ import ModalProvider from "./hooks/Modal";
 
 import Header from "./components/Header";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPrint } from "@fortawesome/free-solid-svg-icons";
+
 const App = () => {
   const componentRef = useRef();
   const [showElement, setShowElement] = useState(false);
@@ -29,16 +32,32 @@ const App = () => {
         <Header />
         <div pageStyle={"width: 20px"}></div>
         <Pages />
-        <button onClick={() => handleShowElement()}> add </button>
         {showElement && <Pages />}
-        {showElement && (
-          <button onClick={() => handleRemoveElement()}> remove </button>
-        )}
       </div>
-      <ReactToPrint
-        trigger={() => <button>Imprimir!</button>}
-        content={() => componentRef.current}
-      />
+      <div
+        style={{
+          display: "flex",
+          width: 1060,
+          marginLeft: "auto",
+          marginRight: "auto",
+          justifyContent: "space-between",
+        }}
+      >
+        {showElement && (
+          <button onClick={() => handleRemoveElement()}> Remover </button>
+        )}
+        {!showElement && (
+          <button onClick={() => handleShowElement()}> Adicionar </button>
+        )}
+        <ReactToPrint
+          trigger={() => (
+            <button>
+              <FontAwesomeIcon icon={faPrint} color="#fff" /> Imprimir!
+            </button>
+          )}
+          content={() => componentRef.current}
+        />
+      </div>
     </ModalProvider>
   );
 };

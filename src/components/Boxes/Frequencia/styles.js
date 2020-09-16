@@ -43,10 +43,7 @@ export const ContainerModal = styled.div`
   margin: auto;
   padding: 30px;
   width: 300px;
-  max-height: 700px;
   border-radius: 4px;
-  overflow: hidden;
-  overflow-y: scroll;
   z-index: 5;
 `;
 
@@ -164,6 +161,7 @@ export const ModalInput = styled.input`
 
 export const ButtonModal = styled.button`
   width: 100%;
+  margin: 0;
 `;
 
 export const SelectOption = styled.select`
@@ -203,4 +201,25 @@ export const Calendar = styled.div`
     top: 50%;
     transform: translate(-50%, -50%);
   }
+`;
+
+export const InputIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  right: 0;
+  top: -5px;
+  cursor: pointer;
+
+  @media print {
+    display: none;
+  }
+`;
+
+export const TextAreaBoxCheck = styled.div`
+  height: 90px;
+  position: relative;
+  padding: 10px;
+`;
+
+export const TextAreaContainer = styled.div`
+  position: relative;
 `;

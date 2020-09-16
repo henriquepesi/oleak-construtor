@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: 140px 2fr 1fr 1fr 1fr;
+  grid-template-columns: 140px 2fr 0.8fr 0.8fr 1.5fr;
   grid-gap: 0 30px;
   align-items: center;
   padding: 10px 20px 10px 20px;
@@ -52,6 +53,7 @@ export const InputElement = styled.input`
   padding: 10px;
   border: solid 2px #d7d9db;
   border-radius: 4px;
+  margin-bottom: 5px;
 
   & + input {
     margin-top: 15px;
@@ -72,4 +74,28 @@ export const InputFile = styled.label`
   letter-spacing: 0.02em;
   text-align: center;
   border: dashed 2px #c7c9cb;
+`;
+
+export const InputContainer = styled.div`
+  position: relative;
+`;
+
+export const InputMessage = styled.span`
+  width: 100%;
+  display: inline-flex;
+  height: 40px;
+  align-items: center;
+  padding: 10px 10px 12px 10px;
+  margin-bottom: 5px;
+`;
+
+export const InputIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  cursor: pointer;
+
+  @media print {
+    display: none;
+  }
 `;

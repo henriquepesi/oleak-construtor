@@ -32,9 +32,13 @@ export default createGlobalStyle`
     letter-spacing: .0333em;
     line-height: 1.25;
     padding: 1em 2em;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     display: block;
     margin-bottom: 5em;
     margin-top: 1em;
+    @media print  {
+        display: none;
+    }
   }
+  
 `;

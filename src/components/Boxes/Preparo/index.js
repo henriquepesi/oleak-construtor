@@ -55,11 +55,11 @@ const selectClickImg = {
 
 export default function Preparo() {
   const [files, setFiles] = useState([]);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
-  const [select, setSelect] = useState(false);
+  const [select, setSelect] = useState();
   const [produto, setProduto] = useState("");
   const [agua, setAgua] = useState("");
 
@@ -170,7 +170,7 @@ export default function Preparo() {
             />
             <ContainerModalItens>
               {filterItemsAmbient.map(
-                (item, key, status) =>
+                (item, key) =>
                   item.NomeAmbiente && (
                     <ContainerModalItem
                       key={key}
@@ -178,6 +178,7 @@ export default function Preparo() {
                       status={select === key}
                     >
                       <ContainerModalImage
+                        style={select === key ? selectClickImg : null}
                         src={item["ImagemAmbiente"]}
                         alt={item["NomeAmbiente"]}
                       />
@@ -213,7 +214,7 @@ export default function Preparo() {
               </div>
             </div>
           )}
-          {(agua || produto) !== "" && (
+          {(agua || produto) !== "" && !thumbs.length && (
             <ModalNameOption>
               <span>{produto} Produto</span>
               <FontAwesomeIcon icon={faTimes} color="rgba(219, 25, 67)" />

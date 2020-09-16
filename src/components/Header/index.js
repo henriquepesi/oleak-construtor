@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import DragDrop from "../DragDrop";
+
+import {
+  faCheckCircle,
+  faTimesCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   Container,
   HeaderItemOne,
   Slogan,
   InputElement,
-  InputFile,
+  InputMessage,
+  InputContainer,
+  InputIcon,
 } from "./styles";
 
 function Header() {
+  const [tel, setTel] = useState("");
+  const [closeTel, setCloseTel] = useState(false);
+  const [email, setEmail] = useState("");
+  const [closeEmail, setCloseEmail] = useState(false);
   return (
     <Container>
       <div>
@@ -35,19 +46,65 @@ function Header() {
       <DragDrop> Logo CLiente </DragDrop>
 
       <div>
-        <InputElement
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="Telefone"
-        />
+        {!closeTel ? (
+          <InputContainer>
+            <InputElement
+              type="tel"
+              name="phone"
+              placeholder="Telefone"
+              value={tel}
+              onChange={(e) => setTel(e.target.value)}
+            />
+            {tel !== "" && (
+              <InputIcon
+                onClick={() => setCloseTel(!closeTel)}
+                icon={faCheckCircle}
+                color="#19db79"
+              />
+            )}
+          </InputContainer>
+        ) : (
+          <InputContainer>
+            <InputMessage>
+              {tel}
+              <InputIcon
+                onClick={() => setCloseTel(!closeTel)}
+                icon={faTimesCircle}
+                color="#db1943"
+              />
+            </InputMessage>
+          </InputContainer>
+        )}
 
-        <InputElement
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-        />
+        {!closeEmail ? (
+          <InputContainer>
+            <InputElement
+              type="tel"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {email !== "" && (
+              <InputIcon
+                onClick={() => setCloseEmail(!closeEmail)}
+                icon={faCheckCircle}
+                color="#19db79"
+              />
+            )}
+          </InputContainer>
+        ) : (
+          <InputContainer>
+            <InputMessage>
+              {email}
+              <InputIcon
+                onClick={() => setCloseEmail(!closeEmail)}
+                icon={faTimesCircle}
+                color="#db1943"
+              />
+            </InputMessage>
+          </InputContainer>
+        )}
       </div>
     </Container>
   );
