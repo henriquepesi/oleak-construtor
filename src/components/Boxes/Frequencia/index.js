@@ -14,13 +14,7 @@ import {
 
 import {
   DragContainer,
-  DragImage,
   ContainerModal,
-  ContainerModalSearch,
-  ContainerModalItem,
-  ContainerModalImage,
-  ContainerModalTitle,
-  ContainerModalItens,
   ContainerMainModal,
   ContainerBox,
   BoxHeader,

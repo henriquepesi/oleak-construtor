@@ -3,7 +3,12 @@ import { useDropzone } from "react-dropzone";
 import data from "../../../data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faTimesCircle,
+  faSearch,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   DragContainer,
@@ -24,6 +29,9 @@ import {
   ContainerModalValuesTitle,
   ModalNameOption,
   ButtonModal,
+  InputIcon,
+  TextAreaBoxCheck,
+  TextAreaContainer,
 } from "./styles";
 
 const thumbsContainer = {
@@ -62,6 +70,8 @@ export default function Preparo() {
   const [select, setSelect] = useState();
   const [produto, setProduto] = useState("");
   const [agua, setAgua] = useState("");
+  const [message, setMessage] = useState("");
+  const [closeMessage, setCloseMessage] = useState(false);
 
   const filterItemsAmbient = data.filter((item) => {
     return (
@@ -223,7 +233,31 @@ export default function Preparo() {
           )}
         </div>
       </section>
-      <TextAreaBox placeholder="Instruções" />
+      {!closeMessage ? (
+        <TextAreaContainer>
+          <TextAreaBox
+            value={message}
+            placeholder="Instruções"
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          {message !== "" && (
+            <InputIcon
+              onClick={() => setCloseMessage(!closeMessage)}
+              icon={faCheckCircle}
+              color="#19db79"
+            />
+          )}
+        </TextAreaContainer>
+      ) : (
+        <TextAreaBoxCheck>
+          {message}{" "}
+          <InputIcon
+            onClick={() => setCloseMessage(!closeMessage)}
+            icon={faTimesCircle}
+            color="#db1943"
+          />
+        </TextAreaBoxCheck>
+      )}
     </ContainerBox>
   );
 }
