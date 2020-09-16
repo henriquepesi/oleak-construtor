@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const DragContainer = styled.div`
   display: flex;
@@ -41,9 +42,8 @@ export const ContainerModal = styled.div`
   background-color: #fefefe;
   margin: auto;
   padding: 30px;
-  width: 500px
-  max-height: 70%;
-  max-width: 1120px;
+  width: 300px;
+  max-height: 700px;
   border-radius: 4px;
   overflow: hidden;
   overflow-y: scroll;
@@ -131,7 +131,7 @@ export const ModalNameOption = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 107px;
+  bottom: 109px;
   width: 90%;
   right: 0;
   left: 0;
@@ -142,4 +142,65 @@ export const ModalNameOption = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+
+  > * {
+    margin: 0 5px;
+  }
+`;
+
+export const ModalInput = styled.input`
+  width: 100%;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  box-sizing: border-box;
+  height: 45px;
+  padding: 0 16px;
+  margin-bottom: 30px;
+  border: 0;
+  border-radius: 4px;
+  background: #f2f4f6;
+  margin-bottom: 0;
+`;
+
+export const ButtonModal = styled.button`
+  width: 100%;
+`;
+
+export const SelectOption = styled.select`
+  font-family: sans-serif;
+  font-size: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  padding: 10px;
+  border: solid 2px #d7d9db;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  margin: 2em 0;
+`;
+
+export const Calendar = styled.div`
+  position: relative;
+  align-items: center;
+  padding: 0 12px;
+  height: 170px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #f5f7f9;
+  font-size: 15px;
+  color: #a7a9ab;
+  -webkit-letter-spacing: 0.02em;
+  -moz-letter-spacing: 0.02em;
+  -ms-letter-spacing: 0.02em;
+  letter-spacing: 0.02em;
+  text-align: center;
+  border: dashed 2px #c7c9cb;
+  margin: 20px auto 50px;
+
+  svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;

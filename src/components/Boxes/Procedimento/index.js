@@ -142,7 +142,7 @@ export default function Procedimento() {
           <input {...getInputProps()} />
           {!hasImage && !thumbs.length ? (
             (console.log(thumbs),
-            (<DragContainer>colocar imagem</DragContainer>))
+            (<DragContainer>Enviar imagem</DragContainer>))
           ) : thumbs.length ? (
             (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
           ) : (

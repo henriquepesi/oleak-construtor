@@ -3,7 +3,11 @@ import { useDropzone } from "react-dropzone";
 import data from "../../../data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faTimes,
+  faCalendarCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   DragContainer,
@@ -20,6 +24,10 @@ import {
   BoxTitle,
   TextAreaBox,
   ModalNameOption,
+  ModalInput,
+  ButtonModal,
+  SelectOption,
+  Calendar,
 } from "./styles";
 
 const thumb = {
@@ -45,6 +53,8 @@ export default function Produto() {
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
   const [selectText, setSelectText] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [frequencia, setFrequencia] = useState("");
 
   const filterItemsProduto = data.filter((item) => {
     return (
@@ -101,29 +111,43 @@ export default function Produto() {
         showModal={showModal}
       >
         <ContainerModal>
-          <ContainerModalSearch
-            type="search"
-            placeholder="Buscar ..."
-            onChange={(e) => setSearch(e.target.value)}
+          <ModalInput
+            type="text"
+            placeholder="0"
+            onChange={(e) => setQuantidade(e.target.value)}
           />
-          <ContainerModalItens>oi</ContainerModalItens>
+          <SelectOption onChange={(e) => setFrequencia(e.target.value)}>
+            <option value="">Selecione</option>
+
+            <option value="Minuto">Minuto</option>
+            <option value="Hora">Hora</option>
+            <option value="Semana">Semana</option>
+            <option value="Mês">Mês</option>
+            <option value="Bimestre">Bimestre</option>
+            <option value="Trimestre">Trimestre</option>
+            <option value="Semestre">Semestre</option>
+            <option value="Ano">Ano</option>
+          </SelectOption>
+          <ButtonModal onClick={() => setShowModal(!showModal)}>
+            Salvar
+          </ButtonModal>
         </ContainerModal>
       </ContainerMainModal>
       <section className="container">
         <div>
           <input {...getInputProps()} />
-          {!hasImage ? (
-            <DragContainer>Produto</DragContainer>
+          {(quantidade || frequencia) === "" ? (
+            <DragContainer>Frquência</DragContainer>
           ) : (
-            <div style={thumb}>
-              <div style={thumbInner}>
-                <DragImage src={selectImg} />
-              </div>
-            </div>
+            <Calendar>
+              <FontAwesomeIcon icon={faCalendarCheck} size="5x" />
+            </Calendar>
           )}
-          {selectText !== "" && (
+          {(quantidade || frequencia) !== "" && (
             <ModalNameOption>
-              <span>{selectText}</span>
+              <span>{quantidade}</span>
+              <FontAwesomeIcon icon={faTimes} color="rgba(219, 25, 67)" />
+              <span>{frequencia}</span>
             </ModalNameOption>
           )}
         </div>
