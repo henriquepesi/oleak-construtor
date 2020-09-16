@@ -19,6 +19,7 @@ import {
   BoxHeader,
   BoxTitle,
   TextAreaBox,
+  ModalNameOption,
 } from "./styles";
 
 const thumb = {
@@ -43,6 +44,7 @@ export default function Produto() {
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
+  const [selectText, setSelectText] = useState("");
 
   const filterItemsProduto = data.filter((item) => {
     return (
@@ -66,6 +68,8 @@ export default function Produto() {
 
   const handleSelectItem = (item) => {
     setSelectImg(item.ImagemProduto);
+    setSelectText(item.NomeProduto);
+
     setShowModal(false);
     setHasImage(true);
     setFiles([]);
@@ -131,6 +135,11 @@ export default function Produto() {
                 <DragImage src={selectImg} />
               </div>
             </div>
+          )}
+          {selectText !== "" && (
+            <ModalNameOption>
+              <span>{selectText}</span>
+            </ModalNameOption>
           )}
         </div>
       </section>

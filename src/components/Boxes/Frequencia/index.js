@@ -19,13 +19,8 @@ import {
   BoxHeader,
   BoxTitle,
   TextAreaBox,
+  ModalNameOption,
 } from "./styles";
-
-const thumbsContainer = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-};
 
 const thumb = {
   display: "inline-flex",
@@ -42,13 +37,14 @@ const thumbInner = {
   overflow: "hidden",
 };
 
-export default function Frequencia() {
+export default function Produto() {
   const [showModal, setShowModal] = useState(false);
 
   const [files, setFiles] = useState([]);
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
+  const [selectText, setSelectText] = useState("");
 
   const filterItemsProduto = data.filter((item) => {
     return (
@@ -70,16 +66,10 @@ export default function Frequencia() {
     },
   });
 
-  let thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
-      <div style={thumbInner}>
-        <DragImage src={file.preview} />
-      </div>
-    </div>
-  ));
-
   const handleSelectItem = (item) => {
     setSelectImg(item.ImagemProduto);
+    setSelectText(item.NomeProduto);
+
     setShowModal(false);
     setHasImage(true);
     setFiles([]);
@@ -116,38 +106,25 @@ export default function Frequencia() {
             placeholder="Buscar ..."
             onChange={(e) => setSearch(e.target.value)}
           />
-          <ContainerModalItens>
-            {filterItemsProduto.map(
-              (item) =>
-                item.NomeProduto && (
-                  <ContainerModalItem onClick={() => handleSelectItem(item)}>
-                    <ContainerModalImage
-                      src={item.ImagemProduto}
-                      alt={item.NomeProduto}
-                    />
-                    <ContainerModalTitle>
-                      {item.NomeProduto}
-                    </ContainerModalTitle>
-                  </ContainerModalItem>
-                )
-            )}
-          </ContainerModalItens>
+          <ContainerModalItens>oi</ContainerModalItens>
         </ContainerModal>
       </ContainerMainModal>
       <section className="container">
-        <div {...getRootProps({ className: "dropzone" })}>
+        <div>
           <input {...getInputProps()} />
-          {!hasImage && !thumbs.length ? (
-            (console.log(thumbs),
-            (<DragContainer>colocar imagem</DragContainer>))
-          ) : thumbs.length ? (
-            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
+          {!hasImage ? (
+            <DragContainer>Produto</DragContainer>
           ) : (
             <div style={thumb}>
               <div style={thumbInner}>
                 <DragImage src={selectImg} />
               </div>
             </div>
+          )}
+          {selectText !== "" && (
+            <ModalNameOption>
+              <span>{selectText}</span>
+            </ModalNameOption>
           )}
         </div>
       </section>

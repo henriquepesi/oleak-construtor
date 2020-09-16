@@ -15,14 +15,14 @@ export const DragContainer = styled.div`
   letter-spacing: 0.02em;
   text-align: center;
   border: dashed 2px #c7c9cb;
-  margin: 20px auto 30px;
+  margin: 20px auto 50px;
 `;
 
 export const DragImage = styled.img`
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 22px 0;
+  margin: 22px 0 50px;
 `;
 
 export const ContainerMainModal = styled.div`

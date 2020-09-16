@@ -7,7 +7,6 @@ export const DragContainer = styled.div`
   padding: 0 12px;
   height: 170px;
   width: 100%;
-  cursor: pointer;
   border-radius: 4px;
   background-color: #f5f7f9;
   font-size: 15px;
@@ -15,18 +14,18 @@ export const DragContainer = styled.div`
   letter-spacing: 0.02em;
   text-align: center;
   border: dashed 2px #c7c9cb;
-  margin: 20px auto 30px;
+  margin: 20px auto 50px;
 `;
 
 export const DragImage = styled.img`
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 22px 0;
+  margin: 22px 0 50px;
 `;
 
 export const ContainerMainModal = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   right: 0;
@@ -42,7 +41,7 @@ export const ContainerModal = styled.div`
   background-color: #fefefe;
   margin: auto;
   padding: 30px;
-  width: 80%;
+  width: 500px
   max-height: 70%;
   max-width: 1120px;
   border-radius: 4px;
@@ -124,4 +123,23 @@ export const TextAreaBox = styled.textarea`
   margin-bottom: 0 !important;
   border-radius: 4px;
   height: 85px;
+`;
+
+export const ModalNameOption = styled.div`
+  display: block;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 107px;
+  width: 90%;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.85em;
+  height: 50px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 `;

@@ -19,6 +19,7 @@ import {
   BoxHeader,
   BoxTitle,
   TextAreaBox,
+  ModalNameOption,
 } from "./styles";
 
 const thumbsContainer = {
@@ -49,6 +50,7 @@ export default function Procedimento() {
   const [search, setSearch] = useState("");
   const [selectImg, setSelectImg] = useState("");
   const [hasImage, setHasImage] = useState(false);
+  const [selectText, setSelectText] = useState("");
 
   const filterItemsProduto = data.filter((item) => {
     return (
@@ -80,6 +82,7 @@ export default function Procedimento() {
 
   const handleSelectItem = (item) => {
     setSelectImg(item.ImagemProduto);
+    setSelectText(item.NomeProduto);
     setShowModal(false);
     setHasImage(true);
     setFiles([]);
@@ -96,7 +99,7 @@ export default function Procedimento() {
   return (
     <ContainerBox>
       <BoxHeader onClick={() => setShowModal(!showModal)}>
-        <BoxTitle>Produto</BoxTitle>
+        <BoxTitle>Procedimento</BoxTitle>
 
         <FontAwesomeIcon icon={faSearch} color="rgba(219, 25, 67)" />
       </BoxHeader>
@@ -148,6 +151,11 @@ export default function Procedimento() {
                 <DragImage src={selectImg} />
               </div>
             </div>
+          )}
+          {selectText !== "" && !thumbs.length && (
+            <ModalNameOption>
+              <span>{selectText}</span>
+            </ModalNameOption>
           )}
         </div>
       </section>
