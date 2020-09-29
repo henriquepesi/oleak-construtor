@@ -13,13 +13,6 @@ export default createGlobalStyle`
     color: #3e3e3e;
     font-weight: 600;
     overflow-x: hidden;
-    @media print {
-      @page {
-        /* size: 20px;
-        margin: 20mm; */
-      }
-    }
-    
   }
 
   
