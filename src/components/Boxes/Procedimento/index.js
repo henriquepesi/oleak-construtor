@@ -5,7 +5,7 @@ import data from "../../../data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
-  faTimesCircle,
+  faPencilAlt,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -188,8 +188,8 @@ export default function Procedimento() {
           {message}{" "}
           <InputIcon
             onClick={() => setCloseMessage(!closeMessage)}
-            icon={faTimesCircle}
-            color="#db1943"
+            icon={faPencilAlt}
+            color="#a7a9ab"
           />
         </TextAreaBoxCheck>
       )}

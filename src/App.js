@@ -11,7 +11,11 @@ import ModalProvider from "./hooks/Modal";
 import Header from "./components/Header";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPrint } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPrint,
+  faMinusCircle,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
   const componentRef = useRef();
@@ -44,14 +48,25 @@ const App = () => {
         }}
       >
         {showElement && (
-          <button onClick={() => handleRemoveElement()}> Remover </button>
+          <button
+            className="transparentButton"
+            onClick={() => handleRemoveElement()}
+          >
+            <FontAwesomeIcon icon={faMinusCircle} color="rgb(219,25,67)" />
+            Remover
+          </button>
         )}
         {!showElement && (
-          <button onClick={() => handleShowElement()}> Adicionar </button>
+          <button
+            className="transparentButton"
+            onClick={() => handleShowElement()}
+          >
+            <FontAwesomeIcon icon={faPlusCircle} color="#333" /> Adicionar
+          </button>
         )}
         <ReactToPrint
           trigger={() => (
-            <button>
+            <button className="mainButton">
               <FontAwesomeIcon icon={faPrint} color="#fff" /> Imprimir!
             </button>
           )}

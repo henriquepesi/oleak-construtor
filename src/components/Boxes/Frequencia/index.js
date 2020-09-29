@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
   faCheckCircle,
-  faTimesCircle,
+  faPencilAlt,
   faSearch,
   faCalendarCheck,
   faTimes,
@@ -130,7 +130,10 @@ export default function Produto() {
             <option value="Semestre">Semestre</option>
             <option value="Ano">Ano</option>
           </SelectOption>
-          <ButtonModal onClick={() => setShowModal(!showModal)}>
+          <ButtonModal
+            className="mainButton"
+            onClick={() => setShowModal(!showModal)}
+          >
             Salvar
           </ButtonModal>
         </ContainerModal>
@@ -139,9 +142,11 @@ export default function Produto() {
         <div>
           <input {...getInputProps()} />
           {(quantidade || frequencia) === "" ? (
-            <DragContainer>Frquência</DragContainer>
+            <DragContainer onClick={() => setShowModal(!showModal)}>
+              Frequência
+            </DragContainer>
           ) : (
-            <Calendar>
+            <Calendar onClick={() => setShowModal(!showModal)}>
               <FontAwesomeIcon icon={faCalendarCheck} size="5x" />
             </Calendar>
           )}
@@ -174,8 +179,8 @@ export default function Produto() {
           {message}{" "}
           <InputIcon
             onClick={() => setCloseMessage(!closeMessage)}
-            icon={faTimesCircle}
-            color="#db1943"
+            icon={faPencilAlt}
+            color="#a7a9ab"
           />
         </TextAreaBoxCheck>
       )}

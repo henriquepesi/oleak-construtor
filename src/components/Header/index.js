@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import DragDrop from "../DragDrop";
 
-import {
-  faCheckCircle,
-  faTimesCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import {
   Container,
@@ -41,9 +38,9 @@ function Header() {
         <p>Monte Instruções de Limpeza e Higiene Profissional</p>
       </Slogan>
 
-      <DragDrop> Logo CLiente </DragDrop>
+      <DragDrop> Colocar Logo Cliente </DragDrop>
 
-      <DragDrop> Logo CLiente </DragDrop>
+      <DragDrop> Colocar Logo Revendedor </DragDrop>
 
       <div>
         {!closeTel ? (
@@ -69,8 +66,8 @@ function Header() {
               {tel}
               <InputIcon
                 onClick={() => setCloseTel(!closeTel)}
-                icon={faTimesCircle}
-                color="#db1943"
+                icon={faPencilAlt}
+                color="#333"
               />
             </InputMessage>
           </InputContainer>
@@ -99,8 +96,8 @@ function Header() {
               {email}
               <InputIcon
                 onClick={() => setCloseEmail(!closeEmail)}
-                icon={faTimesCircle}
-                color="#db1943"
+                icon={faPencilAlt}
+                color="#333"
               />
             </InputMessage>
           </InputContainer>

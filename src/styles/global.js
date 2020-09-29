@@ -13,7 +13,16 @@ export default createGlobalStyle`
     color: #3e3e3e;
     font-weight: 600;
     overflow-x: hidden;
+    @media print {
+      @page {
+        /* size: 20px;
+        margin: 20mm; */
+      }
+    }
+    
   }
+
+  
   body, input, button {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -21,7 +30,7 @@ export default createGlobalStyle`
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 500;
   }
-  button {
+  .mainButton {
     cursor: pointer;
     background: rgb(219, 25, 67);
     border: none;
@@ -41,4 +50,17 @@ export default createGlobalStyle`
     }
   }
   
+  .transparentButton {
+    height: 60px;
+    padding: 1em 0;
+    border: none;
+    background: transparent;
+    font-weight: 800;
+    color: #333;
+    cursor: pointer;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
 `;

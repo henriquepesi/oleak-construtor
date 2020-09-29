@@ -5,10 +5,7 @@ import data from "../../../data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  faCheckCircle,
-  faTimesCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import {
   DragContainer,
@@ -146,6 +143,7 @@ export default function Ambiente() {
           </ContainerModalItens>
         </ContainerModal>
       </ContainerMainModal>
+
       <section className="container">
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
@@ -168,6 +166,7 @@ export default function Ambiente() {
           )}
         </div>
       </section>
+
       {!closeMessage ? (
         <TextAreaContainer>
           <TextAreaBox
@@ -188,8 +187,8 @@ export default function Ambiente() {
           {message}{" "}
           <InputIcon
             onClick={() => setCloseMessage(!closeMessage)}
-            icon={faTimesCircle}
-            color="#db1943"
+            icon={faPencilAlt}
+            color="#a7a9ab"
           />
         </TextAreaBoxCheck>
       )}

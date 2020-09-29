@@ -5,7 +5,7 @@ import data from "../../../data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
-  faTimesCircle,
+  faPencilAlt,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -27,6 +27,12 @@ import {
   TextAreaBoxCheck,
   TextAreaContainer,
 } from "./styles";
+
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+};
 
 const thumb = {
   display: "inline-flex",
@@ -73,6 +79,14 @@ export default function Produto() {
       );
     },
   });
+
+  let thumbs = files.map((file) => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <DragImage src={file.preview} />
+      </div>
+    </div>
+  ));
 
   const handleSelectItem = (item) => {
     setSelectImg(item.ImagemProduto);
@@ -132,11 +146,15 @@ export default function Produto() {
           </ContainerModalItens>
         </ContainerModal>
       </ContainerMainModal>
+
       <section className="container">
-        <div>
+        <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
-          {!hasImage ? (
-            <DragContainer>Produto</DragContainer>
+          {!hasImage && !thumbs.length ? (
+            (console.log(thumbs),
+            (<DragContainer>Enviar imagem</DragContainer>))
+          ) : thumbs.length ? (
+            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
           ) : (
             <div style={thumb}>
               <div style={thumbInner}>
@@ -144,13 +162,14 @@ export default function Produto() {
               </div>
             </div>
           )}
-          {selectText !== "" && (
+          {selectText !== "" && !thumbs.length && (
             <ModalNameOption>
               <span>{selectText}</span>
             </ModalNameOption>
           )}
         </div>
       </section>
+
       {!closeMessage ? (
         <TextAreaContainer>
           <TextAreaBox
@@ -171,8 +190,8 @@ export default function Produto() {
           {message}{" "}
           <InputIcon
             onClick={() => setCloseMessage(!closeMessage)}
-            icon={faTimesCircle}
-            color="#db1943"
+            icon={faPencilAlt}
+            color="#a7a9ab"
           />
         </TextAreaBoxCheck>
       )}

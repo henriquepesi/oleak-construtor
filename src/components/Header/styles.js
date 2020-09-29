@@ -92,7 +92,7 @@ export const InputMessage = styled.span`
 export const InputIcon = styled(FontAwesomeIcon)`
   position: absolute;
   right: 10px;
-  top: 35%;
+  top: 30%;
   cursor: pointer;
 
   @media print {

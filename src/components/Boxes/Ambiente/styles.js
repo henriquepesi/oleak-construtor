@@ -161,6 +161,7 @@ export const TextAreaBoxCheck = styled.div`
   height: 90px;
   position: relative;
   padding: 10px;
+  word-break: break-word;
 `;
 
 export const TextAreaContainer = styled.div`

@@ -16,6 +16,7 @@ export const DragContainer = styled.div`
   text-align: center;
   border: dashed 2px #c7c9cb;
   margin: 20px auto 50px;
+  cursor: pointer;
 `;
 
 export const DragImage = styled.img`
@@ -160,6 +161,7 @@ export const TextAreaBoxCheck = styled.div`
   height: 90px;
   position: relative;
   padding: 10px;
+  word-break: break-word;
 `;
 
 export const TextAreaContainer = styled.div`

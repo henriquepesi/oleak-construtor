@@ -5,7 +5,7 @@ import data from "../../../data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
-  faTimesCircle,
+  faPencilAlt,
   faSearch,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
@@ -168,7 +168,10 @@ export default function Preparo() {
                 onChange={(e) => setAgua(e.target.value)}
               />
             </ContainerModalValues>
-            <ButtonModal onClick={() => setShowModal(!showModal)}>
+            <ButtonModal
+              className="mainButton"
+              onClick={() => setShowModal(!showModal)}
+            >
               Salvar
             </ButtonModal>
           </div>
@@ -253,8 +256,8 @@ export default function Preparo() {
           {message}{" "}
           <InputIcon
             onClick={() => setCloseMessage(!closeMessage)}
-            icon={faTimesCircle}
-            color="#db1943"
+            icon={faPencilAlt}
+            color="#a7a9ab"
           />
         </TextAreaBoxCheck>
       )}
