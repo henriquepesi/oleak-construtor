@@ -213,7 +213,7 @@ export default function Preparo() {
               <DragContainer
                 hastext={agua.length !== 0 || produto.length !== 0}
               >
-                colocar imagem
+                Enviar imagem
               </DragContainer>
             </>
           ) : thumbs.length ? (
