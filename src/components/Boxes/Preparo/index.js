@@ -75,8 +75,8 @@ export default function Preparo() {
 
   const filterItemsAmbient = data.filter((item) => {
     return (
-      item.NomeAmbiente &&
-      item["NomeAmbiente"].toLowerCase().includes(search.toLowerCase())
+      item.NomePreparo &&
+      item["NomePreparo"].toLowerCase().includes(search.toLowerCase())
     );
   });
 
@@ -102,7 +102,7 @@ export default function Preparo() {
   ));
 
   const handleSelectItem = (item, key, status) => {
-    setSelectImg(item["ImagemAmbiente"]);
+    setSelectImg(item["ImagemPreparo"]);
     console.log(status === key);
     setSelect(key);
     // setShowModal(false);
@@ -175,7 +175,7 @@ export default function Preparo() {
               Salvar
             </ButtonModal>
           </div>
-          <div>
+          <div style={{ width: "70%" }}>
             <ContainerModalSearch
               type="search"
               placeholder="Buscar ..."
@@ -184,7 +184,7 @@ export default function Preparo() {
             <ContainerModalItens>
               {filterItemsAmbient.map(
                 (item, key) =>
-                  item.NomeAmbiente && (
+                  item.NomePreparo && (
                     <ContainerModalItem
                       key={key}
                       onClick={() => handleSelectItem(item, key)}
@@ -192,11 +192,11 @@ export default function Preparo() {
                     >
                       <ContainerModalImage
                         style={select === key ? selectClickImg : null}
-                        src={item["ImagemAmbiente"]}
-                        alt={item["NomeAmbiente"]}
+                        src={item["ImagemProcedimento"]}
+                        alt={item["NomePreparo"]}
                       />
                       <ContainerModalTitle>
-                        {item["NomeAmbiente"]}
+                        {item["NomePreparo"]}
                       </ContainerModalTitle>
                     </ContainerModalItem>
                   )

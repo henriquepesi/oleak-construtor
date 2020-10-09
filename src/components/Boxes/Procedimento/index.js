@@ -63,8 +63,8 @@ export default function Procedimento() {
 
   const filterItemsProduto = data.filter((item) => {
     return (
-      item.NomeProduto &&
-      item.NomeProduto.toLowerCase().includes(search.toLowerCase())
+      item.NomeProcedimento &&
+      item.ImagemProcedimento.toLowerCase().includes(search.toLowerCase())
     );
   });
 
@@ -90,8 +90,8 @@ export default function Procedimento() {
   ));
 
   const handleSelectItem = (item) => {
-    setSelectImg(item.ImagemProduto);
-    setSelectText(item.NomeProduto);
+    setSelectImg(item.ImagemProcedimento);
+    setSelectText(item.NomeProcedimento);
     setShowModal(false);
     setHasImage(true);
     setFiles([]);
@@ -134,8 +134,8 @@ export default function Procedimento() {
                 item.NomeProduto && (
                   <ContainerModalItem onClick={() => handleSelectItem(item)}>
                     <ContainerModalImage
-                      src={item.ImagemProduto}
-                      alt={item.NomeProduto}
+                      src={item.ImagemProcedimento}
+                      alt={item.NomeProcedimento}
                     />
                     <ContainerModalTitle>
                       {item.NomeProduto}
