@@ -18,6 +18,20 @@ export const HeaderItemOne = styled.h1`
   padding: 0 !important;
   margin: 0 !important;
 
+  a {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(219, 25, 67);
+    border: 2px solid rgb(219, 25, 67);
+    padding: 3px 5px;
+    border-radius: 5px;
+
+    @media print {
+      display: none;
+    }
+  }
+
   img {
     max-width: 100%;
     height: auto;

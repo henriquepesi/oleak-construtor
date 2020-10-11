@@ -22,6 +22,7 @@ function Header() {
     <Container>
       <div>
         <HeaderItemOne>
+          <a href="https://oleak.com.br/">Voltar para o site</a>
           <img
             src="https://oleak.com.br/wp-content/uploads/2020/04/logo-oleak.svg"
             alt="Oleak"
