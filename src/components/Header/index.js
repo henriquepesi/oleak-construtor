@@ -25,7 +25,7 @@ function Header() {
           <img
             src="https://oleak.com.br/wp-content/uploads/2020/04/logo-oleak.svg"
             alt="Oleak"
-            class="logo "
+            className="logo "
           />
         </HeaderItemOne>
       </div>

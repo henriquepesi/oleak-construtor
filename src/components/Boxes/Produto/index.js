@@ -130,9 +130,12 @@ export default function Produto() {
           />
           <ContainerModalItens>
             {filterItemsProduto.map(
-              (item) =>
+              (item, index) =>
                 item.NomeProduto && (
-                  <ContainerModalItem onClick={() => handleSelectItem(item)}>
+                  <ContainerModalItem
+                    key={index}
+                    onClick={() => handleSelectItem(item)}
+                  >
                     <ContainerModalImage
                       src={item.ImagemProduto}
                       alt={item.NomeProduto}
@@ -151,10 +154,9 @@ export default function Produto() {
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           {!hasImage && !thumbs.length ? (
-            (console.log(thumbs),
-            (<DragContainer>Enviar imagem</DragContainer>))
+            <DragContainer>Enviar imagem</DragContainer>
           ) : thumbs.length ? (
-            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
+            <div style={thumbsContainer}>{thumbs}</div>
           ) : (
             <div style={thumb}>
               <div style={thumbInner}>

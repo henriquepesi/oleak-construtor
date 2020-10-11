@@ -103,7 +103,6 @@ export default function Preparo() {
 
   const handleSelectItem = (item, key, status) => {
     setSelectImg(item["ImagemPreparo"]);
-    console.log(status === key);
     setSelect(key);
     // setShowModal(false);
     setHasImage(true);
@@ -192,7 +191,7 @@ export default function Preparo() {
                     >
                       <ContainerModalImage
                         style={select === key ? selectClickImg : null}
-                        src={item["ImagemProcedimento"]}
+                        src={item["ImagemPreparo"]}
                         alt={item["NomePreparo"]}
                       />
                       <ContainerModalTitle>

@@ -64,7 +64,7 @@ export default function Procedimento() {
   const filterItemsProduto = data.filter((item) => {
     return (
       item.NomeProcedimento &&
-      item.ImagemProcedimento.toLowerCase().includes(search.toLowerCase())
+      item.NomeProcedimento.toLowerCase().includes(search.toLowerCase())
     );
   });
 
@@ -130,15 +130,18 @@ export default function Procedimento() {
           />
           <ContainerModalItens>
             {filterItemsProduto.map(
-              (item) =>
-                item.NomeProduto && (
-                  <ContainerModalItem onClick={() => handleSelectItem(item)}>
+              (item, index) =>
+                item.NomeProcedimento && (
+                  <ContainerModalItem
+                    key={index}
+                    onClick={() => handleSelectItem(item)}
+                  >
                     <ContainerModalImage
                       src={item.ImagemProcedimento}
                       alt={item.NomeProcedimento}
                     />
                     <ContainerModalTitle>
-                      {item.NomeProduto}
+                      {item.NomeProcedimento}
                     </ContainerModalTitle>
                   </ContainerModalItem>
                 )
@@ -150,10 +153,9 @@ export default function Procedimento() {
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           {!hasImage && !thumbs.length ? (
-            (console.log(thumbs),
-            (<DragContainer>Enviar imagem</DragContainer>))
+            <DragContainer>Enviar imagem</DragContainer>
           ) : thumbs.length ? (
-            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
+            <div style={thumbsContainer}>{thumbs}</div>
           ) : (
             <div style={thumb}>
               <div style={thumbInner}>

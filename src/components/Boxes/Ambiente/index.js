@@ -78,8 +78,8 @@ export default function Ambiente() {
     },
   });
 
-  let thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
+  let thumbs = files.map((file, index) => (
+    <div key={index} style={thumb}>
       <div style={thumbInner}>
         <DragImage src={file.preview} />
       </div>
@@ -127,9 +127,12 @@ export default function Ambiente() {
           />
           <ContainerModalItens>
             {filterItemsAmbient.map(
-              (item) =>
+              (item, index) =>
                 item.NomeAmbiente && (
-                  <ContainerModalItem onClick={() => handleSelectItem(item)}>
+                  <ContainerModalItem
+                    key={index}
+                    onClick={() => handleSelectItem(item)}
+                  >
                     <ContainerModalImage
                       src={item["ImagemAmbiente"]}
                       alt={item["NomeAmbiente"]}
@@ -148,10 +151,9 @@ export default function Ambiente() {
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
           {!hasImage && !thumbs.length ? (
-            (console.log(thumbs),
-            (<DragContainer>Enviar imagem</DragContainer>))
+            <DragContainer>Enviar imagem</DragContainer>
           ) : thumbs.length ? (
-            (console.log(thumbs), (<div style={thumbsContainer}>{thumbs}</div>))
+            <div style={thumbsContainer}>{thumbs}</div>
           ) : (
             <div style={thumb}>
               <div style={thumbInner}>

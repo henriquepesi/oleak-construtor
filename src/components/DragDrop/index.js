@@ -28,12 +28,6 @@ const thumbInner = {
   overflow: "hidden",
 };
 
-const img = {
-  display: "block",
-  maxWidth: "auto",
-  height: 150,
-};
-
 export default function DragDrop({ children }) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import data from "../../../data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -30,42 +29,16 @@ import {
   TextAreaContainer,
 } from "./styles";
 
-const thumb = {
-  display: "inline-flex",
-  borderRadius: 2,
-  height: "auto",
-  maxWidth: "100%",
-  padding: 4,
-  boxSizing: "border-box",
-};
-
-const thumbInner = {
-  display: "flex",
-  minWidth: 0,
-  overflow: "hidden",
-};
-
 export default function Produto() {
   const [showModal, setShowModal] = useState(false);
 
   const [files, setFiles] = useState([]);
-  const [search, setSearch] = useState("");
-  const [selectImg, setSelectImg] = useState("");
-  const [hasImage, setHasImage] = useState(false);
-  const [selectText, setSelectText] = useState("");
   const [quantidade, setQuantidade] = useState("");
   const [frequencia, setFrequencia] = useState("");
   const [message, setMessage] = useState("");
   const [closeMessage, setCloseMessage] = useState(false);
 
-  const filterItemsProduto = data.filter((item) => {
-    return (
-      item.NomeProduto &&
-      item.NomeProduto.toLowerCase().includes(search.toLowerCase())
-    );
-  });
-
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
       setFiles(
@@ -77,15 +50,6 @@ export default function Produto() {
       );
     },
   });
-
-  const handleSelectItem = (item) => {
-    setSelectImg(item.ImagemProduto);
-    setSelectText(item.NomeProduto);
-
-    setShowModal(false);
-    setHasImage(true);
-    setFiles([]);
-  };
 
   useEffect(
     () => () => {
